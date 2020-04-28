@@ -24,9 +24,9 @@ function copy_items_gcp() {
 
 	if [ "$(echo ${2} | awk '{ print substr($0,length($0)-22,14) }')" == 'archive_date=2' ]; then
 
-		if ! remove_directory_cloud "${2}/"; then return 1 
-
-		[ $? -ne 0 ] && error_log "$FUNCNAME:remove_directory_cloud failed " && return 1
+		if ! remove_directory_cloud "${2}/"; then
+			error_log "$FUNCNAME:remove_directory_cloud failed " && return 1
+		fi
 
 		copy_items_cloud ${1} ${2}
 
@@ -175,15 +175,16 @@ function gcp_consolidated_archive_push() {
 
 		info_log "$FUNCNAME:dir copy evaling is  ${SRC_ARCH_DIR}"
 
-		test_directory ${SRC_ARCH_DIR}
-
-		[ $? -ne 0 ] && return 1
+		if ! test_directory ${SRC_ARCH_DIR}; then
+			return 1
+		fi
 
 		info_log "$FUNCNAME:copy directory is ${SRC_ARCH_DIR}"
 
-		copy_hdfs_cloud ${SRC_ARCH_DIR}
+		if ! copy_hdfs_cloud ${SRC_ARCH_DIR}; then
+			return 1
+		fi
 
-		[ $? -ne 0 ] && return 1
 	fi
 
 	info_log "$FUNCNAME:evaluation complete the vairable provided ${1} is not a directory"
