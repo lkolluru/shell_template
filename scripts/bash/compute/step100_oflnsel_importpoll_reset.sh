@@ -45,9 +45,9 @@ main() {
 
     cd ${JAR_DIRECTORY}
 
-    gen_jar_execution ${CALCENGINE_JAR_VER_NAME} ${LIBJARS} ${JAR_ENV} ${JAR_FG} ${JAR_RESOURCES} ${PWD_FILE_RES}
-
-    [ $? -ne 0 ] && exit 1
+    if ! gen_jar_execution ${CALCENGINE_JAR_VER_NAME} ${LIBJARS} ${JAR_ENV} ${JAR_FG} ${JAR_RESOURCES} ${PWD_FILE_RES}; then
+        exit 1
+    fi
 
 }
 

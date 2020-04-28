@@ -60,7 +60,9 @@ function test_directory() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        test_cda_regex "${1}"
+        if ! test_cda_regex "${1}"; then
+                return 1
+        fi
 
         [ $? -ne 0 ] && return 1
 
@@ -423,7 +425,7 @@ function copy_items_cloud() {
 
                 info_log "$FUNCNAME:command being executed is ${copy_to_gs_command}"
 
-                eval ${copy_to_gs_command} > /dev/null
+                eval ${copy_to_gs_command} >/dev/null
 
                 [ $? -ne 0 ] && fatal_log "$FUNCNAME:${copy_to_gs_command} failed to execute" && return 1
 
