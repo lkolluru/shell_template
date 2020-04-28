@@ -1,0 +1,14 @@
+pipeline trigger
+pipeline trigger 849
+pipeline config update for step log and jar permission update 
+pipeline archive path fixed in conifg
+updated config push
+test commit
+test
+test with hash
+test process.
+dummy committt
+commit for configg
+Chnages to stop input trig file check
+test
+

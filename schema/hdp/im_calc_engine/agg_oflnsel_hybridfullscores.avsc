@@ -1,0 +1,56 @@
+{
+  "type" : "record",
+  "name" : "agg_oflnsel_hybridfullscores_avro_temp",
+  "namespace" : "uat_im_calc_engine",
+  "fields" : [ {
+    "name" : "cust_part_seq_no",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "cust_id",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 11,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "model_literal",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "geo_loc",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "full_model_score",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 13,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "score_date",
+    "type" : [ "null", {
+      "type" : "int",
+      "logicalType" : "date"
+    } ],
+    "default" : null
+  } ]
+}

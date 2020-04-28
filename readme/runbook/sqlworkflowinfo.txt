@@ -1,0 +1,131 @@
+-- Execute the script on the SQl server to determine all the queries required to execute the workflow.
+
+USE hdl_calc_engine_metastore;
+
+/* Initiation Script for the CDA metadata info project */
+
+DECLARE @s_init_functionalgroupcode NVARCHAR(MAX) = N'CMPGN';
+DECLARE @s_init_errorshortcode NVARCHAR(MAX) = N'dummy';
+DECLARE @s_init_errormessage NVARCHAR(MAX) = N'dummy';
+DECLARE @tbl_init_executableinfo TABLE
+(
+    loopid INT IDENTITY(1, 1),
+    unitofworkid INT NOT NULL,
+    independenttablegroupname NVARCHAR(MAX) NOT NULL,
+    executionorderinfo INT NOT NULL
+);
+DECLARE @s_init_loop_groupname NVARCHAR(MAX) = NULL;
+DECLARE @i_init_loop_tblgrp_max_var INT;
+DECLARE @i_init_loop_id INT = 1;
+DECLARE @tbl_init_executableworkflowdefinfo TABLE
+(
+    variabletablegroupname NVARCHAR(MAX) NOT NULL,
+    variableworkflowstepexecutionorder INT NOT NULL,
+    variableworkflowstepname NVARCHAR(MAX) NOT NULL,
+    variableworkflowstepschema NVARCHAR(MAX) NOT NULL,
+    variableworkflowstepquery NVARCHAR(MAX) NOT NULL,
+    variableworkflowqueryparameters NVARCHAR(MAX) NOT NULL,
+    jobexecutionguid NVARCHAR(MAX) NOT NULL,
+    jobexecutioninstanceguid NVARCHAR(MAX) NOT NULL,
+    variableworkflowquerytype NVARCHAR(MAX) NOT NULL,
+    schemarebuildflag NVARCHAR(MAX) NOT NULL
+);
+
+--stages 
+-- initialize
+-- compute executable step names 
+-- compute loop and provide information about the workflow
+
+/* cleanup logging to remove any existance of records in a table app*/
+
+BEGIN TRY
+    EXEC appinfo.dbp_clenuplogginginfo @variablefunctionalgroupcode = @s_init_functionalgroupcode; -- nvarchar(100) 
+END TRY
+BEGIN CATCH
+    SET @s_init_errormessage = N'cleanup function failed';
+    SET @s_init_errorshortcode = COALESCE(@s_init_errorshortcode, 'CLNP_ERR');
+    SET @s_init_errormessage = COALESCE(NULLIF(@s_init_errormessage, ''), ERROR_MESSAGE());
+    PRINT @s_init_errorshortcode;
+    THROW;
+END CATCH;
+
+/* workflow definition to geneate the table inputs */
+
+-- step 1: get the functional group info for the execution.
+
+BEGIN TRY
+    EXEC appinfo.dbp_unitofwork_start @s_functionalgroupcode = @s_init_functionalgroupcode; -- nvarchar(max)
+END TRY
+BEGIN CATCH
+    SET @s_init_errormessage = N'cleanup function failed';
+    SET @s_init_errorshortcode = COALESCE(@s_init_errorshortcode, 'CLNP_ERR');
+    SET @s_init_errormessage = COALESCE(NULLIF(@s_init_errormessage, ''), ERROR_MESSAGE());
+    PRINT @s_init_errorshortcode;
+    THROW;
+END CATCH;
+
+
+--EXEC appinfo.dbp_unitofwork_start @s_functionalgroupcode = 'CMPGN';
+-- step 2: get the item required for the execution. ( Functional group needs to come from the properties files from the application)
+
+INSERT INTO @tbl_init_executableinfo
+EXEC appinfo.get_calcengineexecutableinfo @s_executablefunctionalgroup = @s_init_functionalgroupcode,
+                                          -- nvarchar(max)
+
+                                          @s_executableentity = 'independent';
+
+-- display to be commented out. 
+SELECT loopid,
+       unitofworkid,
+       independenttablegroupname,
+       executionorderinfo
+FROM @tbl_init_executableinfo;
+
+
+SELECT @i_init_loop_tblgrp_max_var = MAX(loopid)
+FROM @tbl_init_executableinfo;
+
+SELECT @i_init_loop_tblgrp_max_var;
+
+WHILE @i_init_loop_id <= @i_init_loop_tblgrp_max_var
+BEGIN
+    SELECT @s_init_loop_groupname = independenttablegroupname
+    FROM @tbl_init_executableinfo
+    WHERE loopid = @i_init_loop_id;
+
+    SELECT @s_init_loop_groupname;
+    INSERT INTO @tbl_init_executableworkflowdefinfo
+    (
+        variabletablegroupname,
+        variableworkflowstepexecutionorder,
+        variableworkflowstepname,
+        variableworkflowstepschema,
+        variableworkflowstepquery,
+        variableworkflowqueryparameters,
+        jobexecutionguid,
+        jobexecutioninstanceguid,
+        variableworkflowquerytype,
+        schemarebuildflag
+    )
+    EXEC appinfo.get_executableworkflowstepinfo @s_tablegroupname = @s_init_loop_groupname,
+                                                                      -- nvarchar(max)
+                                                @i_enablelogging = 1; -- int
+
+
+    SET @i_init_loop_id = @i_init_loop_id + 1;
+
+
+END;
+SELECT variabletablegroupname,
+       variableworkflowstepexecutionorder,
+       variableworkflowstepname,
+       variableworkflowstepschema,
+       variableworkflowstepquery,
+       variableworkflowqueryparameters,
+       jobexecutionguid,
+       jobexecutioninstanceguid,
+       variableworkflowquerytype,
+       schemarebuildflag
+FROM @tbl_init_executableworkflowdefinfo
+ORDER BY variabletablegroupname,
+         variableworkflowstepexecutionorder;

@@ -1,0 +1,62 @@
+{
+  "type" : "record",
+  "name" : "oflnsel_hdl_preselectionfile_avro_temp",
+  "namespace" : "dev_sa_calc_engine_exchange",
+  "fields" : [ {
+    "name" : "week",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "cust_part_seq_no",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "cust_id",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 11,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "selection_date",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "selection_dt",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "run_ts",
+    "type" : [ "null", {
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    } ],
+    "default" : null
+  }, {
+    "name" : "orig_source",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1000
+    } ],
+    "default" : null
+  }, {
+    "name" : "modsro_ind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "mod321_ind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "modb_ind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "bmodel_flag",
+    "type" : [ "null", "int" ],
+    "default" : null
+  } ]
+}

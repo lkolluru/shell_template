@@ -1,0 +1,10 @@
+1,11,21,31,41,51 15,16,17,18,19,20,21,22,23 * * * bash /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/dev/oflnsel/scripts/bash/process/oflnsel_import_trig.sh "dev"  > /dev/null 2>&1
+
+
+10,20,30,40,50,59 15,16,17,18,19,20,21,22,23 * * * bash /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/dev/oflnsel/scripts/bash/process/oflnsel_export_trig.sh "dev"  > /dev/null 2>&1
+
+
+
+/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/dev/oflnsel/persistent/filewatchlog/compute/ready/      IN_CREATE       bash /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/dev/oflnsel/scripts/bash/process/oflnsel_compute_process.sh "dev" >> /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/dev/oflnsel/activelogs/jarlogs/oflnsel_compute.incronlogg 2>&1
+
+/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/dev/oflnsel/persistent/filewatchlog/postscoring/ready/      IN_CREATE       bash /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/dev/oflnsel/scripts/bash/process/oflnsel_export_process.sh "dev" >> /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/dev/oflnsel/activelogs/jarlogs/oflnsel_export.incronlog 2>&1

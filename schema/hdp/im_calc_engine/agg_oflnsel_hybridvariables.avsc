@@ -1,0 +1,1003 @@
+{
+  "type" : "record",
+  "name" : "agg_oflnsel_hybridvariables_avro_temp",
+  "namespace" : "uat_im_calc_engine",
+  "fields" : [ {
+    "name" : "cust_part_seq_no",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "cust_id",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 11,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "geo_loc",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "zipcode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "variable_derived_dt",
+    "type" : [ "null", {
+      "type" : "int",
+      "logicalType" : "date"
+    } ],
+    "default" : null
+  }, {
+    "name" : "selection_dt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "age",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "astv_ctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "bal",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "balance",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "cinp",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "cumdol",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "cumeft",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "cumord",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "dash_cust_ind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "dt91",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "dtlpmt1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "dtlprtpy",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "dttotp",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "dys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "eff1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "eff9",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "effslo",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "effswo",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "gend",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 1,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "gend_f",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 12
+    } ],
+    "default" : null
+  }, {
+    "name" : "hlft",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "hspdpmdy",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "hsunctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "lcerldys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "lcpymdys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "max_days_delinq",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "miss",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nondys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nonyrc",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nordslcn",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "np",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "npavgord",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npay3mo",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npbackmn",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumcch",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumdol",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumeft",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumord",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumstp",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumwks",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npdttotp",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npeffswo",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nplcdys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonds1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonds2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npopdt1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npopdys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npopennm",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npopprop",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npordage",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npordys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nporlcs1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppchmos",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppddol",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppddys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppdlcdy",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppdord",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppdpmdy",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppdsodl",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppmdt1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppmdys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppmdys2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npprod",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npprtpy",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npstatus",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "npuncctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npvareff",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npvarmag",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npvaropn",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npvarpd",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npvclctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npxopss1",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "npxpddt1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npzip",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "nret7mo",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "num_dlq",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "numaff",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "opennm",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "optvm",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "ordda1",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ordslcan",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "paydy1",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "pchamos",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "pdmdsit4yr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "pdo3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "pdollar6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 11,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "pmdys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "pmtdt6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "pnoltv12",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "prev3mo_ctm_mod",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 13,
+      "scale" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "prtfudys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "risk",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 1,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "status",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "suppress_ind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "tavgord1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "tlpchmos",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tocumord",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "toopen",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "topchmos",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "totdys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "totopen",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tprd1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tprfudys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "vars601",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "vclratio",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "xmagdta",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "xopdays1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "xopenps2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "xopords",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "xpaiddt1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "xpddays1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "xplcdys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonord",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "eff_ctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "conv_mer_effort_ct",
+    "type" : [ "null", "int" ],
+    "default" : null
+  } ]
+}

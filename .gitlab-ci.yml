@@ -1,0 +1,188 @@
+variables:
+# core workflow variables which are necessary for deployment of the code across the environments.
+
+# system notifications information
+  NOTIFICATION_EMAIL: "cda_dev_support@pch.com"
+  NOTIFICATION_MESSAGE: " deployment of ${CODE_FG} to ${CODE_ENV} is complete"
+#######################################
+# Git Pipeline Execution Stages
+# Function Modules:
+#   eval_environment -- evaluate the environment and create the framework based folders
+#   setup_environment  -- create the necessary control files and evaluators
+#   clusterpush  -- publish the code from the git repository to the cluster
+#   prepare_environment_file -- create the environment file for execution
+#######################################
+stages:
+    - eval_environment
+    - setup_environment
+    - clusterpush
+    - prepare_environment_file
+#######################################
+# Git Pipeline Workflow Execution Stages
+# Function Modules:
+#   git_pipeline_deployment_variables_base -- evaluate the environment and create the framework based folders
+#   ##CODE_FG -- Functional group specific to a workflow
+#   ##DEPLOYMENT_SCRIPT -- deployment script location information
+#######################################
+.git_pipeline_deployment_variables_base:
+ variables: &deployment_variables
+  CODE_FG: "oflnsel"
+  DEPLOYMENT_SCRIPT: "${DEPLOYMENT_SCRIPT_CODE_ROOT}${WRKFLW_ROOT}/${CI_ENVIRONMENT_URL}${SCRIPTS_ROOT}${DEPLOYMENT_SCRIPT_NAME}"
+#######################################
+# Git Pipeline Workflow Execution Parameterized Job Modules
+# Function Modules:
+#   codebase_evaluate_job -- job template to execute the respective framework evaluation and execution of templated scripts
+#   setup_environment_job -- prepare the environment file for the creation and execution of incron triggers
+#   deploy_job -- deploy the job from the git if there are no local changes including the configuration changes
+#   config_deploy_job -- deploy the configuration changes only
+#######################################
+.codebase_evaluate_job: &codebase_evaluate_job_definition
+  stage: eval_environment
+  script:
+    - "bash ${DEPLOYMENT_SCRIPT} ${CI_ENVIRONMENT_URL} ${CODE_FG} 'eval_environment'"
+
+.setup_environment_job: &setup_environment_job_definition
+  stage: setup_environment
+  script:
+   - "bash ${DEPLOYMENT_SCRIPT} ${CI_ENVIRONMENT_URL} ${CODE_FG} 'setup_environment'"
+
+.deploy_job: &deploy_job_definition
+  stage: clusterpush
+  script:
+   - "bash ${DEPLOYMENT_SCRIPT} ${CI_ENVIRONMENT_URL} ${CODE_FG} 'clusterpush'"
+
+.config_deploy_job: &config_deploy_job_definition
+  stage: prepare_environment_file
+  script:
+    - "bash ${DEPLOYMENT_SCRIPT} ${CI_ENVIRONMENT_URL} ${CODE_FG} 'prepare_environment_file'"
+#######################################
+# Git Pipeline Workflow Environment Job Modules
+# Function Modules:
+#   development based deployment module to execute the scripts only on the dev branches and classified development environment
+#######################################
+dev_codebase_evaluate_job:
+  <<: *codebase_evaluate_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - d_ce_ms_etl_svc
+  only:
+    - dev
+  environment:
+    name: development
+    url: dev
+
+dev_setup_environment_job:
+  <<: *setup_environment_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - d_ce_ms_etl_svc
+  only:
+    - dev
+  environment:
+    name: development
+    url: dev
+
+dev_deploy_job:
+  <<: *deploy_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - d_ce_ms_etl_svc
+  only:
+    - dev
+  environment:
+    name: development
+    url: dev
+#######################################
+# Git Pipeline Workflow Environment Job Modules
+# Function Modules:
+#   pre-production based deployment module to execute the scripts only on the dev branches and classified pre-prod environment
+#######################################
+preprod_codebase_evaluate_job:
+  <<: *codebase_evaluate_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - s_ce_ms_etl_svc
+  only:
+    - preprod
+  environment:
+    name: preprod
+    url: preprod
+
+preprod_setup_environment_job:
+  <<: *setup_environment_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - s_ce_ms_etl_svc
+  only:
+    - preprod
+  environment:
+    name: preprod
+    url: preprod
+
+preprod_deploy_job:
+  <<: *deploy_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - s_ce_ms_etl_svc
+  only:
+    - preprod
+  environment:
+    name: preprod
+    url: preprod
+#######################################
+# Git Pipeline Workflow Environment Job Modules
+# Function Modules:
+#   production based deployment module to execute the scripts only on the dev branches and classified production environment
+#   environemnt variable name for calceingine workflow is uat
+#######################################
+prod_codebase_evaluate_job:
+  <<: *codebase_evaluate_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - p_ce_ms_etl_svc
+  only:
+    - master
+  environment:
+    name: production
+    url: uat
+
+prod_setup_environment_job:
+  <<: *setup_environment_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - p_ce_ms_etl_svc
+  only:
+    - master
+  environment:
+    name: production
+    url: uat
+
+prod_deploy_job:
+  <<: *deploy_job_definition
+  variables:
+    <<: *deployment_variables
+
+  tags:
+    - p_ce_ms_etl_svc
+  only:
+    - master
+  environment:
+    name: production
+    url: uat
+

@@ -1,0 +1,1586 @@
+{
+  "type" : "record",
+  "name" : "staging_oflnsel_hybridccr_variables_avro_temp",
+  "namespace" : "uat_sa_calc_engine",
+  "fields" : [ {
+    "name" : "cust_id",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 11,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_lst_2year_avg_diff_days_rounded_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_fulfsys_order_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_canada_fulfsys_order_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_fulfsys_order_original_lst_1year_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_fulfsys_order_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_fulfsys_order_original_lst_3month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_fulfsys_order_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_fulfsys_order_original_lst_6month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_fulfsys_order_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_fulfsys_order_original_lst_1year_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_fulfsys_order_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_fulfsys_order_original_lst_3month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_fulfsys_order_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_fulfsys_order_original_lst_6month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_fulfsys_order_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_canada_fulfsys_order_lst_6month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "online_mag_fulfsys_order_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_lst_2year_max_diff_days_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_lst_2year_min_diff_days_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_original_lst_3month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_original_lst_6month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_original_lst_1year_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_original_lst_2year_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_nonorder_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_nonorder_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_nonorder_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_nonorder_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_nonorder_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_nonorder_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_nonorder_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_nonorder_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_nonorder_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_nonorder_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "online_nonorder_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "online_nonorder_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "online_nonorder_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_effort_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_effort_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_effort_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_effort_generalmag_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mag_effort_generalmag_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_effort_generalmer_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_effort_generalmer_lst_2year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_effort_generalmer_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_mer_effort_generalmer_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_effort_non_promo_lst_1year_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_effort_non_promo_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "directmail_effort_non_promo_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_tran_pay_lst_2year_avg_diff_days_count",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_tran_pay_lst_2year_max_diff_days_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_origvalue_lst_1year_amt_div_tran_pay_lst_1year_ratio",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_origvalue_lst_3month_amt_div_tran_pay_lst_3month_ratio",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_origvalue_lst_6month_amt_div_tran_pay_lst_6month_ratio",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_origvalue_lst_2year_amt_div_tran_pay_lst_2year_ratio",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_tran_pay_lst_2year_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_tran_pay_lst_1year_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_tran_pay_lst_6month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_fulfsys_order_tran_pay_lst_3month_amt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "overall_mer_fulfsys_order_tran_pay_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_mer_fulfsys_order_tran_pay_lst_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_mag_fulfsys_order_tran_pay_lst_3month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "overall_mag_fulfsys_order_tran_pay_6month_count",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "total_paid_amount_last_7days",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "online_email_domain_gmail_ind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "cust_part_seq_no",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "agepram",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "anaabill12",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "asaabill12",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "aspdbill1224",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "avg_io",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 4
+    } ],
+    "default" : null
+  }, {
+    "name" : "avgor6ms",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "avgord",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "avorsz1y",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "cocn",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "collection_trans",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "conv_mag_effort_ct",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "conv_mer_effort_ct",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ctm3",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ctmn3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "ctmt12",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "cumval",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "curr_np_non",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "custid_create_dt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "dteff1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "eaf6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "eff_ctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "eff9",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "efforts",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "ent1224",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "ethnic_n",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 1,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "food",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "gmail",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 1,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "heff12",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "hspay3mo",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "hsunctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "int_ctm3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "int_nodt6",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "int_npord",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "m1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "m2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "mag24",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "max_days_delinq",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "mdse",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "mdserat",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "mdsk",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "medprdys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "mer_bs_efforts",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "miss",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "mrkl_dob",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 6,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "n_late_fees_2yrs",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "n_orders",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "navdtoc6m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "navint",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "nbch12mo",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "nctm9m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "ndays1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nefft1y",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nefft3m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nefrat4",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "nent24",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "non12m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "non6m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nordslcn",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npavgord",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumeft",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npcumwks",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npdol3m",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npdoleft",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npdteff1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npdttdf",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npdttotp",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npeff1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npeff6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npeffslo",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npefslnn",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnodt1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnodt1m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnodt3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnodt6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonds2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonds3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonms1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 13,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonord",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npnonrat",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npnonyrp",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npordys2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppchdys",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppchmos",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nppdsodl",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npprdy1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npttnt2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npuncctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "npvareff",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npvarmag",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "npvclrat",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "npxpdpd1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "npxpdps3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "nret12ms",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ntran1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "num_dlq",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "off_ord_dys",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ord12",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "paydy2",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "pchamos",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "pd_doll6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "pdmdsit4yr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "pdollar3_6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 11,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "pholtv1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "pnoltv3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "poltv12",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "poltv3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "ptdbtt13",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "ptdbtt7",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "pure_mer_eff_ct",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "quat1_np_eff",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "quat1_rat_hs_rev",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "quat2_tt_rev",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "quat3_hs_eff",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "qut1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "rgm6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "rtacor612",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "scan1y",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "scq_hs_eff",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "scq_np_rat",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 9,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "scqq_tt_ent",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "sefft3m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "sefft9m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "sefrat1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "sefrat4",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "selection_dt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "snono3m",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tavgord1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "tdays1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tdays2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tdays3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tlpchmos",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tononrat",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "tordint",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "totbyr1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "totdt1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "totdt3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "totnph6",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "tprd3",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "trdys5",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "uncctr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "unefrat",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "vars601",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 3,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "xplcdys1",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "zint",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "zopen_no_payment",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 0
+    } ],
+    "default" : null
+  }, {
+    "name" : "ztvgint",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 8
+    } ],
+    "default" : null
+  } ]
+}
