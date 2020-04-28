@@ -84,10 +84,9 @@ function test_directory_contents() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        if ! test_directory "${1}"; 
-        then 
-        return 1 
-        fi 
+        if ! test_directory "${1}"; then
+                return 1
+        fi
 
         count=$(find ${1} -mindepth 1 -type f | wc -l)
 
@@ -105,7 +104,10 @@ function test_directory_cloud() {
 
         cloud_dir=${1}
 
-        if $(hadoop fs -test -d "${cloud_dir}"); then test_dir_return_code=0; else test_dir_return_code=1; fi
+        if $(hadoop fs -test -d "${cloud_dir}"); 
+        then test_dir_return_code=0; 
+        else test_dir_return_code=1; 
+        fi
 
         [ $test_dir_return_code -ne 0 ] && info_log "$FUNCNAME: directory is not present in the cloud storagedir ${cloud_dir}" && return 1
 
@@ -119,9 +121,8 @@ function test_directory_contents_cloud() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        if ! test_directory_cloud "${1}"; 
-        then 
-        return 1 
+        if ! test_directory_cloud "${1}"; then
+                return 1
         fi
 
         count=$(hadoop fs -ls -R ${1} | grep -E '^-' | wc -l)
@@ -170,17 +171,19 @@ function move_item() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least two argument is required" && return 1
 
-        if ! test_path "${1}";
-         then return 1 
-         fi
+        if ! test_path "${1}"; then
+                return 1
+        fi
 
-        if ! test_directory "${2}";
-         then return 1 
-         fi
+        if ! test_directory "${2}"; then
+                return 1
+        fi
 
         mv -v "${1}" "${2}"
 
-        if [ $? -ne 0 ]; then
+        move_item_return_code=$?
+
+        if [ $move_item_return_code -ne 0 ]; then
 
                 error_log "$FUNCNAME:Unable to move objects from ${1} to ${2}"
 
@@ -203,23 +206,23 @@ function expand_archive() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least 2 argument is required" && return 1
 
-        if ! test_path "${1}";
-        then 
-        return 1 
+        if ! test_path "${1}"; then
+                return 1
         fi
 
-        if ! test_content "${1}"; 
-        then 
-        return 1 
+        if ! test_content "${1}"; then
+                return 1
         fi
 
-        if ! test_directory "${2}"; 
-        then return 1 
+        if ! test_directory "${2}"; then
+                return 1
         fi
 
         tar -xvf ${1} -C ${2}
 
-        if [ $? -ne 0 ]; then
+        tar_return_code=$?
+
+        if [ $tar_return_code -ne 0 ]; then
 
                 error_log "$FUNCNAME:Error. Not able to unzip the file ${1}."
 
@@ -241,9 +244,11 @@ function compress_archive() {
         '
         [ $# -ne 3 ] && error_log "$FUNCNAME: at least 3 argument is required" && return 1
 
-        $(cd "${2}" && zip -rq -j "${3}" "${1}")
+        cd "${2}" && zip -rq -j "${3}" "${1}"
 
-        if [ $? -ne 0 ]; then
+        compress_return_code=$?
+
+        if [ $compress_return_code -ne 0 ]; then
 
                 error_log "$FUNCNAME:Unable to create the zip file ${3} from the data location ${1}"
 
@@ -264,17 +269,19 @@ function copy_item() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least two argument is required" && return 1
 
-       if ! test_path "${1}"; 
-       then return 1 
-       fi
+        if ! test_path "${1}"; then
+                return 1
+        fi
 
-       if ! test_directory "${2}";
-        then return 1 
+        if ! test_directory "${2}"; then
+                return 1
         fi
 
         hadoop fs -cp ${1} ${2}
 
-        if [ $? -ne 0 ]; then
+        copy_return_code=$?
+
+        if [ $copy_return_code -ne 0 ]; then
 
                 error_log "$FUNCNAME:Unable to copy objects from ${1} to ${2}"
 
@@ -298,9 +305,9 @@ function remove_items() {
 
         directory=${1}
 
-       if ! test_directory "${1}"; 
-       then return 1 
-       fi
+        if ! test_directory "${1}"; then
+                return 1
+        fi
 
         info_log "$FUNCNAME:${directory} is being evaluated for removal"
 
@@ -340,20 +347,17 @@ function move_items() {
 
         source_directory=${1}
 
-       if ! destination_directory="${2}" 
-       then 
-       return 1 
-       fi
+        if ! destination_directory="${2}"; then
+                return 1
+        fi
 
-       if ! test_directory "${source_directory}" 
-       then 
-       return 1 
-       fi
+        if ! test_directory "${source_directory}"; then
+                return 1
+        fi
 
-       if ! test_directory "${destination_directory}" 
-       then 
-       return 1 
-       fi
+        if ! test_directory "${destination_directory}"; then
+                return 1
+        fi
 
         files=($(hadoop fs -ls ${source_directory} | awk '!/^d/ {print $8}'))
 
@@ -366,8 +370,9 @@ function move_items() {
                 if [ -s "${file}" ]; then
 
                         move_item ${file} ${destination_directory}
+                        move_return_code=$?
 
-                        [ $? -ne 0 ] && return 1
+                        [ $move_return_code -ne 0 ] && return 1
 
                 else
 
@@ -403,13 +408,14 @@ function rename_ftpitem() {
                 put ${1}
                 rename ${3} ${4}
 !
-        #Send success email otherwise exit
-        if [ $? -ne 0 ]; then
+        ftp_return_code=$?
+        if [ $ftp_return_code -ne 0 ]; then
 
                 error_log " ${3} File transfer to ${6} failed"
-                exit 1
+                return 1
         else
                 info_log " ${3} File transfer to ${6} successful"
+                return 0
 
         fi
 
@@ -432,7 +438,9 @@ function copy_items_cloud() {
 
                 eval ${copy_to_gs_command} >/dev/null
 
-                [ $? -ne 0 ] && fatal_log "$FUNCNAME:${copy_to_gs_command} failed to execute" && return 1
+                gcp_copy_ret_code=$?
+
+                [ $gcp_copy_ret_code -ne 0 ] && fatal_log "$FUNCNAME:${copy_to_gs_command} failed to execute" && return 1
 
                 info_log "$FUNCNAME:Data copied to GCP" && return 0
 
