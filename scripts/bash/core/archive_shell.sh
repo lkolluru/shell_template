@@ -24,7 +24,7 @@ function copy_items_gcp() {
 
 	if [ "$(echo ${2} | awk '{ print substr($0,length($0)-22,14) }')" == 'archive_date=2' ]; then
 
-		remove_directory_cloud "${2}/"
+		if ! remove_directory_cloud "${2}/"; then return 1 
 
 		[ $? -ne 0 ] && error_log "$FUNCNAME:remove_directory_cloud failed " && return 1
 
@@ -74,9 +74,9 @@ function add_partition_gcp() {
 
 	PARTITION_QUERY=$("ALTER TABLE ${1}_S3ARCH ADD IF NOT EXISTS PARTITION (archive_date='${2}')")
 
-	info_log "The CDA historical parition query is as follows "${PARTITION_QUERY}""
+	info_log "The CDA historical parition query is as follows ${PARTITION_QUERY}"
 
-	[ -z "${PARTITION_QUERY}" ] && error_log "$FUNCNAME:"${PARTITION_QUERY}" is empty value failing the process" && return 1
+	[ -z "${PARTITION_QUERY}" ] && error_log "$FUNCNAME:${PARTITION_QUERY} is empty value failing the process" && return 1
 
 	test_hivetable "SHOW CREATE TABLE ${1}_S3ARCH"
 
@@ -186,7 +186,7 @@ function gcp_consolidated_archive_push() {
 		[ $? -ne 0 ] && return 1
 	fi
 
-	info_log "$FUNCNAME:evaluation complete the vairable provided "${1}" is not a directory"
+	info_log "$FUNCNAME:evaluation complete the vairable provided ${1} is not a directory"
 
 	test_hivetable "${1}"
 
@@ -203,7 +203,9 @@ function gcp_consolidated_archive_push() {
 
 		SRC_DIR=$(beehive "${SHOW_QUERY}" | grep -E -o "\/${CDA_FILE_REGEX}.*[^\']")
 
-		[ $? -ne 0 ] && return 1
+		dir_eval_ret_code=$?
+
+		[ $dir_eval_ret_code -ne 0 ] && return 1
 
 		[ -z "${SRC_DIR}" ] && error_log "$FUNCNAME:${1} :produced blank value from hive table" && return 1
 
