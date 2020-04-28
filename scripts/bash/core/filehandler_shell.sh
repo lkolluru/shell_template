@@ -178,7 +178,7 @@ function move_item() {
          then return 1 
          fi
 
-        mv -v ${1} ${2}
+        mv -v "${1}" "${2}"
 
         if [ $? -ne 0 ]; then
 
