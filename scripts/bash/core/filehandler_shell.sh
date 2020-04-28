@@ -170,9 +170,13 @@ function move_item() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least two argument is required" && return 1
 
-        if ! test_path ${1} then return 1 fi
+        if ! test_path "${1}";
+         then return 1 
+         fi
 
-        if ! test_directory ${2} then return 1 fi
+        if ! test_directory "${2}";
+         then return 1 
+         fi
 
         mv -v ${1} ${2}
 
@@ -199,11 +203,19 @@ function expand_archive() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least 2 argument is required" && return 1
 
-        if ! test_path ${1} then return 1 fi
+        if ! test_path "${1}";
+        then 
+        return 1 
+        fi
 
-        if ! test_content ${1} then return 1 fi
+        if ! test_content "${1}"; 
+        then 
+        return 1 
+        fi
 
-        if ! test_directory ${2} then return 1 fi
+        if ! test_directory "${2}"; 
+        then return 1 
+        fi
 
         tar -xvf ${1} -C ${2}
 
