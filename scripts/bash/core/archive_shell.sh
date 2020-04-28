@@ -29,7 +29,6 @@ function copy_items_gcp() {
 		fi
 
 		copy_items_cloud ${1} ${2}
-
 		copy_items_cloud_ret_code=$?
 
 		[ $copy_items_cloud_ret_code -ne 0 ] && return 1
@@ -72,28 +71,24 @@ function add_partition_gcp() {
         '
 	[ $# -ne 2 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-	PARTITION_QUERY=$("ALTER TABLE ${1}_S3ARCH ADD IF NOT EXISTS PARTITION (archive_date='${2}')")
+	PARTITION_QUERY="ALTER TABLE ${1}_S3ARCH ADD IF NOT EXISTS PARTITION (archive_date='${2}')"
 
 	info_log "The CDA historical parition query is as follows ${PARTITION_QUERY}"
 
 	[ -z "${PARTITION_QUERY}" ] && error_log "$FUNCNAME:${PARTITION_QUERY} is empty value failing the process" && return 1
 
-	test_hivetable "SHOW CREATE TABLE ${1}_S3ARCH"
-
-	if [ $? -eq 0 ]; then
-
-		beehive "${PARTITION_QUERY}"
-
-		[ $? -eq 0 ] && info_log "$FUNCNAME:${PARTITION_QUERY} executed and updated table in CDA" && return 0
-
-		[ $? -ne 0 ] && return 1
-
-	else
+	if ! test_hivetable "SHOW CREATE TABLE ${1}_S3ARCH"; then
 
 		error_log "Archive table not present for this hive table: ${1}"
 
 		return 1
 
+	fi
+
+	if ! beehive "${PARTITION_QUERY}"; then
+		return 1
+	else
+		"$FUNCNAME:${PARTITION_QUERY} executed and updated table in CDA" && return 0
 	fi
 
 }
@@ -116,9 +111,11 @@ function copy_hdfs_cloud() {
 
 		info_log "$FUNCNAME:${1} :${DEST_DIR} is the cloud storage path"
 
-		copy_items_gcp ${1} "${DEST_DIR}/archive_date=${ARCHIVE_DATE}"
+		if ! copy_items_gcp ${1} "${DEST_DIR}/archive_date=${ARCHIVE_DATE}"; then
 
-		[ $? -ne 0 ] && return 1
+			return 1
+
+		fi
 
 		;;
 	im)
@@ -132,9 +129,9 @@ function copy_hdfs_cloud() {
 
 		info_log "$FUNCNAME:${1} :${DEST_DIR} is the cloud storage path"
 
-		copy_items_gcp ${1} "${DEST_DIR}/archive_date=${ARCHIVE_DATE}"
-
-		[ $? -ne 0 ] && return 1
+		if ! copy_items_gcp ${1} "${DEST_DIR}/archive_date=${ARCHIVE_DATE}"; then
+			return 1
+		fi
 
 		;;
 	cm)
@@ -148,9 +145,10 @@ function copy_hdfs_cloud() {
 
 		info_log "$FUNCNAME:${1} :${DEST_DIR} is the cloud storage path"
 
-		copy_items_gcp ${1} "${DEST_DIR}/archive_date=${ARCHIVE_DATE}"
+		if ! copy_items_gcp ${1} "${DEST_DIR}/archive_date=${ARCHIVE_DATE}"; then
+			return 1
+		fi
 
-		[ $? -ne 0 ] && return 1
 		;;
 	*)
 		error_log "this input:${1} doesn't belong to SA or IM or CM of HDLP CalcEngine. Can not proceed for archive"
