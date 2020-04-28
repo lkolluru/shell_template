@@ -62,7 +62,7 @@ function fatal_log() {
 #######################################
 function prepare_log_file() {
 
-        log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g')
+        log_file_name=$($(basename ${0}) | sed 's/\.sh//g')
         log_file=$(append_character ${log_directory} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d").log
         subject_area="${log_subject_area}"
 
@@ -84,7 +84,7 @@ function prepare_log_file() {
 
 function prepare_cronlog_file() {
 
-        cron_log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g')
+        cron_log_file_name=$($(basename ${0}) | sed 's/\.sh//g')
         cron_log_file=$(append_character ${cron_log_directory} "/")$(append_character ${cron_log_file_name} "_")$(date +"%Y_%m_%d").log
         subject_area="${log_subject_area}"
 
@@ -106,7 +106,7 @@ function prepare_cronlog_file() {
 
 function prepare_incronlog_file() {
 
-        incron_log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g')
+        incron_log_file_name=$($(basename ${0}) | sed 's/\.sh//g')
         incron_log_file=$(append_character ${incron_log_directory} "/")$(append_character ${incron_log_file_name} "_")$(date +"%Y_%m_%d").log
         subject_area="${log_subject_area}"
 
@@ -129,7 +129,7 @@ function prepare_incronlog_file() {
 function prepare_archivelog_file() {
 
         archivelogdir="/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/${ENV_FLAG}/oflnsel/archivelogs/archwrkflwlogs"
-        log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g')
+        log_file_name=$($(basename ${0}) | sed 's/\.sh//g')
         archivelog_file=$(append_character ${archivelogdir} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d_%H_%M_%S").log
         subject_area="${log_subject_area}"
 
@@ -162,7 +162,7 @@ function send_success_email() {
         success_email_message="$(basename ${0}) of ${email_subject_area} completed successfully at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${log_directory}."
         success_sms_subject="COMPLETED: ${email_subject_env} - $(basename ${0}) for ${email_subject_area}."
         success_sms_message="'$(basename ${0})' completed successfully at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${log_directory}."
-        attach_file=$(ls -ltr -t ${log_directory} | grep $(echo $(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
         mail -s "${success_email_subject}" -a ${log_directory}/${attach_file} ${success_to_email} <<<"${success_email_message}"
         #mail -v -r noreply@pch.com -s "${success_sms_subject}" ${to_phone} <<< "${success_sms_message}";
 
@@ -175,7 +175,7 @@ function send_mainscript_failure_email() {
         error_sms_message="Script Name: $(basename ${0}) Please check error log at "
         error_sms_subject="FAILED in ${email_subject_env}:${email_subject_area}'s Script: $(basename ${0}) ."
 
-        attach_file=$(ls -ltr -t ${log_directory} | grep $(echo $(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
         last_line=$(cat ${log_directory}/$attach_file | tail -1)
         mail -s "${error_email_subject}" -a ${log_directory}/${attach_file} ${failure_to_email} <<<"${error_email_message}"
         mail -v -r noreply@pch.com -s "${error_sms_subject}" ${to_phone} <<<"${error_sms_message} ${log_directory}/$attach_file."
@@ -188,7 +188,7 @@ function send_cron_success_email() {
         success_email_message="$(basename ${0}) of ${email_subject_area} completed successfully at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${cron_log_directory}."
         success_sms_subject="COMPLETED: ${email_subject_env} - $(basename ${0}) for ${email_subject_area}."
         success_sms_message="'$(basename ${0})' completed successfully at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${cron_log_directory}."
-        attach_file=$(ls -ltr -t ${cron_log_directory} | grep $(echo $(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr -t ${cron_log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
         mail -s "${success_email_subject}" -a ${cron_log_directory}/${attach_file} ${success_to_email} <<<"${success_email_message}"
         #mail -v -r noreply@pch.com -s "${success_sms_subject}" ${to_phone} <<< "${success_sms_message}";
 
@@ -201,7 +201,7 @@ function send_cron_mainscript_failure_email() {
         error_sms_message="Script Name: $(basename ${0}) Please check error log at "
         error_sms_subject="FAILED in ${email_subject_env}:${email_subject_area}'s Script: $(basename ${0}) ."
 
-        attach_file=$(ls -ltr -t ${cron_log_directory} | grep $(echo $(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr -t ${cron_log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
         last_line=$(cat ${cron_log_directory}/$attach_file | tail -1)
         mail -s "${error_email_subject}" -a ${cron_log_directory}/${attach_file} ${failure_to_email} <<<"${error_email_message}"
         #mail -v -r noreply@pch.com -s "${error_sms_subject}" ${to_phone} <<<"${error_sms_message} ${log_directory}/$attach_file."
