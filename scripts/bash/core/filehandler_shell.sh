@@ -264,9 +264,13 @@ function copy_item() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least two argument is required" && return 1
 
-       if ! test_path ${1} then return 1 fi
+       if ! test_path "${1}"; 
+       then return 1 
+       fi
 
-       if ! test_directory ${2} then return 1 fi
+       if ! test_directory "${2}";
+        then return 1 
+        fi
 
         hadoop fs -cp ${1} ${2}
 
@@ -294,7 +298,9 @@ function remove_items() {
 
         directory=${1}
 
-       if ! test_directory ${1} then return 1 fi
+       if ! test_directory "${1}"; 
+       then return 1 
+       fi
 
         info_log "$FUNCNAME:${directory} is being evaluated for removal"
 
@@ -334,11 +340,20 @@ function move_items() {
 
         source_directory=${1}
 
-       if ! destination_directory=${2} then return 1 fi
+       if ! destination_directory="${2}" 
+       then 
+       return 1 
+       fi
 
-       if ! test_directory ${source_directory} then return 1 fi
+       if ! test_directory "${source_directory}" 
+       then 
+       return 1 
+       fi
 
-       if ! test_directory ${destination_directory} then return 1 fi
+       if ! test_directory "${destination_directory}" 
+       then 
+       return 1 
+       fi
 
         files=($(hadoop fs -ls ${source_directory} | awk '!/^d/ {print $8}'))
 
