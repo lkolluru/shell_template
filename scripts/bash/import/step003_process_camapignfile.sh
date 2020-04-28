@@ -11,10 +11,11 @@ trap 'gen_step_error ${LINENO} ${?}' ERR
 
 function unzip_tarfiles() {
 
-    test_directory_contents ${CAMPAIGN_FILE_DIR}
+    if ! test_directory_contents ${CAMPAIGN_FILE_DIR}; then
 
-    [ $? -ne 0 ] && return 1
+         return 1
 
+    fi
     current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name *_N.tar.gz)
 
     [ -z ${current_campaign_file} ] && error_log "$FUNCNAME:${current_campaign_file} is empty value failing the process" && return 1
@@ -23,38 +24,45 @@ function unzip_tarfiles() {
 
     info_log "file uzipped is ${original_zip_file_name}"
 
-    test_path ${CAMPAIGN_FILE_DIR}/${original_zip_file_name}
+    if ! test_path ${CAMPAIGN_FILE_DIR}/${original_zip_file_name}; then
 
-    [ $? -ne 0 ] && return 1
+        return 1
+    fi
+    if ! test_directory ${UNZIP_CAMPAIGN_FILE_DIR}; then
 
-    test_directory ${UNZIP_CAMPAIGN_FILE_DIR}
+        return 1
+    fi
+    if ! expand_archive ${CAMPAIGN_FILE_DIR}/${original_zip_file_name} ${UNZIP_CAMPAIGN_FILE_DIR}; then
 
-    [ $? -ne 0 ] && return 1
-
-    expand_archive ${CAMPAIGN_FILE_DIR}/${original_zip_file_name} ${UNZIP_CAMPAIGN_FILE_DIR}
-
-    [ $? -ne 0 ] && return 1
-
+        return 1
+    fi
 }
 
 function move_campaign_files() {
 
-    test_directory_contents ${UNZIP_CAMPAIGN_FILE_DIR}
+    if ! test_directory_contents ${UNZIP_CAMPAIGN_FILE_DIR}; then 
 
-    [ $? -ne 0 ] && return 1
+     return 1
 
-    test_directory ${CAMPAIGN_DATA_FILE_DIR}
+    fi 
 
-    [ $? -ne 0 ] && return 1
+    if ! test_directory ${CAMPAIGN_DATA_FILE_DIR}; then 
 
-    remove_items ${CAMPAIGN_DATA_FILE_DIR}
+     return 1
 
-    [ $? -ne 0 ] && return 1
+    fi 
 
-    move_items ${UNZIP_CAMPAIGN_FILE_DIR} ${CAMPAIGN_DATA_FILE_DIR}
+    if ! remove_items ${CAMPAIGN_DATA_FILE_DIR}; then 
 
-    [ $? -ne 0 ] && return 1
+     return 1
 
+    fi 
+
+    if ! move_items ${UNZIP_CAMPAIGN_FILE_DIR} ${CAMPAIGN_DATA_FILE_DIR}
+
+     return 1
+
+    fi 
 }
 
 function archive_processed_files() {
@@ -69,9 +77,11 @@ function archive_processed_files() {
 
     archive_file_path=${CAMPAIGN_ARCHIVE_ZIP_DIR}
 
-    move_item ${CAMPAIGN_FILE_DIR}/${original_zip_file_name} ${archive_file_path}
+    if ! move_item ${CAMPAIGN_FILE_DIR}/${original_zip_file_name} ${archive_file_path}; then 
 
-    [ $? -ne 0 ] && return 1
+     return 1
+
+    fi 
 
 }
 
@@ -90,14 +100,18 @@ function post_process_validations() {
 
 function main() {
 
-    unzip_tarfiles
-    [ $? -ne 0 ] && exit 1
-    move_campaign_files
-    [ $? -ne 0 ] && exit 1
-    archive_processed_files
-    [ $? -ne 0 ] && exit 1
-    post_process_validations
-    [ $? -ne 0 ] && exit 1
+    if ! unzip_tarfiles; then
+        exit 1
+    fi
+    if ! move_campaign_files; then
+        exit 1
+    fi
+    if ! archive_processed_files; then
+        exit 1
+    fi
+    if ! post_process_validations; then
+        exit 1
+    fi
 }
 
 #Main Program

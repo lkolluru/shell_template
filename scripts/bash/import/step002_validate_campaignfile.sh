@@ -13,11 +13,11 @@ trap 'gen_step_error ${LINENO} ${?}' ERR
 
 function check_file_name() {
 
-    test_directory_contents ${CAMPAIGN_FILE_DIR}
+    if ! test_directory_contents ${CAMPAIGN_FILE_DIR}; then
+        return 1
+    fi
 
-    [ $? -ne 0 ] && return 1
-
-    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name *_N.tar.gz)
+    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name '*_N.tar.gz')
 
     [ -z ${current_campaign_file} ] && error_log "$FUNCNAME:${current_campaign_file} is empty value failing the process" && return 1
 
@@ -25,15 +25,17 @@ function check_file_name() {
 
     info_log "file name for evaluation is ${original_zip_file_name}"
 
-    test_path ${CAMPAIGN_FILE_DIR}/${original_zip_file_name}
+    if ! test_path ${CAMPAIGN_FILE_DIR}/${original_zip_file_name}; then
 
-    [ $? -ne 0 ] && return 1
+        return 1
+
+    fi
 
 }
 
 function check_file_size() {
 
-    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name *_N.tar.gz)
+    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name '*_N.tar.gz')
 
     [ -z ${current_campaign_file} ] && error_log "$FUNCNAME:${current_campaign_file} is empty value failing the process" && return 1
 
@@ -41,15 +43,17 @@ function check_file_size() {
 
     info_log "file name for evaluation is ${original_zip_file_name}"
 
-    test_content ${CAMPAIGN_FILE_DIR}/${original_zip_file_name}
+    if ! test_content ${CAMPAIGN_FILE_DIR}/${original_zip_file_name}; then
 
-    [ $? -ne 0 ] && return 1
+        return 1
+
+    fi
 }
 
 function check_file_date() {
 
     wk_date=$(date +"%Y%m%d" -d "last saturday")
-    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name *_N.tar.gz)
+    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name '*_N.tar.gz')
     original_zip_file_name=$(basename ${current_campaign_file})
     processed_zip_filename=$(echo ${original_zip_file_name} | cut -f2 -d'_')
     campaign_file_date=$(expr substr ${processed_zip_filename} 1 8)
@@ -58,17 +62,19 @@ function check_file_date() {
         info_log "$ENV_FLAG_UPPER:OFLNSEL-New Preselection File received for date $campaign_file_date."
     else
         error_log "$ENV_FLAG_UPPER:OFLNSEL-ERROR.Please check Preselection file -Previous week file is received."
-        exit 1
+        return 1
     fi
 }
 
 function main() {
 
     #move_triggerfiles
-    check_file_name
-    [ $? -ne 0 ] && exit 200
-    check_file_size
-    [ $? -ne 0 ] && exit 200
+    if ! check_file_name; then 
+    exit 200
+    fi 
+    if ! check_file_size; then 
+    exit 200
+    fi 
     #check_file_date
 }
 
