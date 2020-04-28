@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ######################################
 # Linux file operations module:
 #   move_item
@@ -138,9 +140,9 @@ function test_cda_regex() {
 
         cda_folder=$(echo "${dir_name}" | grep -E -o "\/${CDA_FILE_REGEX}.*[^\']") || true
 
-        [ -z "${cda_folder}" -a "${cda_folder}"!=" " ] && fatal_log "$FUNCNAME: ${dir_name} location is not a valid cda location" && return 1
+        [ -z "${cda_folder}" ] && [ "${cda_folder}" != " " ] && fatal_log "$FUNCNAME: ${dir_name} location is not a valid cda location" && return 1
 
-        [ ! -z "${cda_folder}" -a "${cda_folder}"!=" " ] && info_log "$FUNCNAME: ${dir_name} location is a valid cda location" && return 0
+        [ ! -z "${cda_folder}" ] && [ "${cda_folder}" != " " ] && info_log "$FUNCNAME: ${dir_name} location is a valid cda location" && return 0
 
 }
 
@@ -154,9 +156,9 @@ function test_cda_regex_cloud() {
 
         cda_folder=$(echo "${dir_name}" | grep -E -o "\/${CDA_CLOUD_REGEX}.*[^\']") || true
 
-        [ -z "${cda_folder}" -a "${cda_folder}"!=" " ] && fatal_log "$FUNCNAME: ${dir_name} location is not a valid cda location" && return 1
+        [ -z "${cda_folder}" ] && [ "${cda_folder}" != " " ] && fatal_log "$FUNCNAME: ${dir_name} location is not a valid cda location" && return 1
 
-        [ ! -z "${cda_folder}" -a "${cda_folder}"!=" " ] && info_log "$FUNCNAME: ${dir_name} location is a valid cda location" && return 0
+        [ !-z "${cda_folder}" ] && [ "${cda_folder}" != " " ] && info_log "$FUNCNAME: ${dir_name} location is a valid cda location" && return 0
 }
 
 function move_item() {
