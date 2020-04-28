@@ -64,8 +64,6 @@ function test_directory() {
                 return 1
         fi
 
-        [ $? -ne 0 ] && return 1
-
         if $(hadoop fs -test -d ${1}); then
 
                 info_log "$FUNCNAME:${1} directory exists"
@@ -86,9 +84,10 @@ function test_directory_contents() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        test_directory ${1}
-
-        [ $? -ne 0 ] && return 1
+        if ! test_directory "${1}" 
+        then 
+        return 1 
+        fi 
 
         count=$(find ${1} -mindepth 1 -type f | wc -l)
 
@@ -120,9 +119,7 @@ function test_directory_contents_cloud() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        test_directory_cloud ${1}
-
-        [ $? -ne 0 ] && return 1
+        if ! test_directory_cloud ${1} then return 1 fi
 
         count=$(hadoop fs -ls -R ${1} | grep -E '^-' | wc -l)
 
@@ -170,13 +167,9 @@ function move_item() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least two argument is required" && return 1
 
-        test_path ${1}
+        if ! test_path ${1} then return 1 fi
 
-        [ $? -ne 0 ] && return 1
-
-        test_directory ${2}
-
-        [ $? -ne 0 ] && return 1
+        if ! test_directory ${2} then return 1 fi
 
         mv -v ${1} ${2}
 
@@ -203,17 +196,11 @@ function expand_archive() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least 2 argument is required" && return 1
 
-        test_path ${1}
+        if ! test_path ${1} then return 1 fi
 
-        [ $? -ne 0 ] && return 1
+        if ! test_content ${1} then return 1 fi
 
-        test_content ${1}
-
-        [ $? -ne 0 ] && return 1
-
-        test_directory ${2}
-
-        [ $? -ne 0 ] && return 1
+        if ! test_directory ${2} then return 1 fi
 
         tar -xvf ${1} -C ${2}
 
@@ -262,13 +249,9 @@ function copy_item() {
         '
         [ $# -ne 2 ] && error_log "$FUNCNAME: at least two argument is required" && return 1
 
-        test_path ${1}
+       if ! test_path ${1} then return 1 fi
 
-        [ $? -ne 0 ] && return 1
-
-        test_directory ${2}
-
-        [ $? -ne 0 ] && return 1
+       if ! test_directory ${2} then return 1 fi
 
         hadoop fs -cp ${1} ${2}
 
@@ -296,9 +279,7 @@ function remove_items() {
 
         directory=${1}
 
-        test_directory ${1}
-
-        [ $? -ne 0 ] && return 1
+       if ! test_directory ${1} then return 1 fi
 
         info_log "$FUNCNAME:${directory} is being evaluated for removal"
 
@@ -338,17 +319,11 @@ function move_items() {
 
         source_directory=${1}
 
-        destination_directory=${2}
+       if ! destination_directory=${2} then return 1 fi
 
-        [ $? -ne 0 ] && return 1
+       if ! test_directory ${source_directory} then return 1 fi
 
-        test_directory ${source_directory}
-
-        [ $? -ne 0 ] && return 1
-
-        test_directory ${destination_directory}
-
-        [ $? -ne 0 ] && return 1
+       if ! test_directory ${destination_directory} then return 1 fi
 
         files=($(hadoop fs -ls ${source_directory} | awk '!/^d/ {print $8}'))
 
