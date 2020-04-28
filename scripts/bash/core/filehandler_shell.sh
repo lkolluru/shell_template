@@ -84,7 +84,7 @@ function test_directory_contents() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        if ! test_directory "${1}" 
+        if ! test_directory "${1}"; 
         then 
         return 1 
         fi 
@@ -119,7 +119,9 @@ function test_directory_contents_cloud() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        if ! test_directory_cloud ${1} then return 1 fi
+        if [ ! test_directory_cloud "${1}" ] ; then 
+        return 1 
+        fi
 
         count=$(hadoop fs -ls -R ${1} | grep -E '^-' | wc -l)
 
