@@ -14,9 +14,11 @@ trap 'gen_step_error ${LINENO} ${?}' ERR
 
 function runArchive() {
 
-   test_path ${ARCHIVE_TABLES_FILE}
+   if ! test_path ${ARCHIVE_TABLES_FILE}; then
 
-   [ $? -ne 0 ] && return 1
+      return 1
+
+   fi
 
    mapfile -t cloud_archive_items <${ARCHIVE_TABLES_FILE}
 
@@ -39,7 +41,7 @@ function runArchive() {
          info_log "$FUNCNAME:proceeding with archivin ${cloud_archive_item}"
 
          gcp_consolidated_archive_push "${cloud_archive_item}"
-         
+
          gcp_consolidated_archive_push_ret_code=$?
 
          [ $gcp_consolidated_archive_push_ret_code -ne 0 ] && return 1 || return 0
@@ -64,9 +66,11 @@ main() {
 
    info_log "Command executed: ${0}"
 
-   runArchive
-   #todo map exit id to the step id to easily figure out which step failed.
-   [ $? -ne 0 ] && exit 1
+   if ! runArchive; then
+      #todo map exit id to the step id to easily figure out which step failed.
+      exit 1
+
+   fi
 
    return 0
 

@@ -42,10 +42,12 @@ main() {
 
     cd ${JAR_DIRECTORY}
 
-    gen_jar_execution ${CALCENGINE_JAR_VER_NAME} ${LIBJARS} ${JAR_ENV} ${JAR_FG} ${JAR_RESOURCES} ${PWD_FILE_RES}
+    if ! gen_jar_execution ${CALCENGINE_JAR_VER_NAME} ${LIBJARS} ${JAR_ENV} ${JAR_FG} ${JAR_RESOURCES} ${PWD_FILE_RES}; then 
 
-    [ $? -ne 0 ] && exit 1
+    exit 1 
 
+    fi 
+    
 }
 
 main 2>&1 | tee -a ${step_log_file}
