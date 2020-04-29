@@ -16,7 +16,7 @@ function unzip_tarfiles() {
          return 1
 
     fi
-    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name *_N.tar.gz)
+    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name '*_N.tar.gz')
 
     [ -z ${current_campaign_file} ] && error_log "$FUNCNAME:${current_campaign_file} is empty value failing the process" && return 1
 
@@ -69,7 +69,7 @@ function archive_processed_files() {
 
     archive_date=$(date +%Y-%m-%d)
 
-    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name *_N.tar.gz)
+    current_campaign_file=$(find ${CAMPAIGN_FILE_DIR} -type f -name '*_N.tar.gz')
 
     [ -z ${current_campaign_file} ] && error_log "$FUNCNAME:${current_campaign_file} is empty value failing the process" && return 1
 
