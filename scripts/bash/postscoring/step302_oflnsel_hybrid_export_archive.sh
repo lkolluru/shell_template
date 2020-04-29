@@ -1,54 +1,81 @@
 #!/bin/bash 
 
 #Set Global Variables
-set -e;
-set -u;
-set -o pipefail;
-
-source ${STEP_SHELL_TEMPLATE_SCRIPT} ;
+set -uo pipefail
+set -E
+set -o errtrace
+source ${STEP_SHELL_TEMPLATE_SCRIPT}
+source ${CE_HDLP_S3ARCHIVE_SCRIPT}
+source ${FILE_HANDLER_SCRIPT}
+trap clean_up SIGINT SIGHUP SIGTERM EXIT
+trap 'gen_step_error ${LINENO} ${?}' ERR
 
 #Functions
 
 function runArchive() {
-   cat ${HYBRID_EXPORT_ARCHIVE_TABLES_FILE} |
-      while read line; do
-         cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
-         if [ "$cmnt" == "#" ]; then
-            info_log "Skipping the archive step $line\n"
-            continue
-         elif [ "$cmnt" == "" ]; then
-            info_log "Skipping empty line\n"
-         else
-            info_log "proceeding with archiving  ${line}"
-            bash ${CE_HDLP_S3ARCHIVE_SCRIPT} ${line}
-         fi
-      done
+
+   if ! test_path ${HYBRID_EXPORT_ARCHIVE_TABLES_FILE}; then
+
+      return 1
+
+   fi
+
+   mapfile -t hybrid_cloud_archive_items <${HYBRID_EXPORT_ARCHIVE_TABLES_FILE}
+
+   for cloud_archive_item in ${hybrid_cloud_archive_items[@]}; do
+
+      cmnt=$(echo ${cloud_archive_item} | awk '{ print substr($1,0,1) }') #check whether step commented
+
+      if [ "${cmnt}" == "#" ]; then
+
+         info_log "$FUNCNAME:Skipping the commented step ${cloud_archive_item}\n"
+
+         continue
+
+      elif [ "$cmnt" == "" ]; then
+
+         info_log "$FUNCNAME:Skipping empty line\n"
+
+      else
+
+         info_log "$FUNCNAME:proceeding with archivin ${cloud_archive_item}"
+
+         gcp_consolidated_archive_push "${cloud_archive_item}"
+
+         gcp_consolidated_archive_push_ret_code=$?
+
+         [ $gcp_consolidated_archive_push_ret_code -ne 0 ] && return 1 || return 0
+
+      fi
+
+   done
 
 }
-trap clean_up SIGINT SIGHUP SIGTERM EXIT
-trap send_failure_email ERR
-
 
 #Main Program
 
-#CHANGE FOLLOWING VARIABLES ACCORDING TO ENV
-return_exit_code=0;
-#export HDL_ROOT_DIRECTORY_REGEX;
-export SA_DEST_DIR;
-export IM_DEST_DIR;
-export CM_DEST_DIR;
-export ARCHIVE_DATE;
+main() {
 
+   #export HDL_ROOT_DIRECTORY_REGEX;
+   export SA_DEST_DIR
+   export IM_DEST_DIR
+   export CM_DEST_DIR
+   export ARCHIVE_DATE
 
-#Setup new or edit log file.
-prepare_log_file;
+   #Setup new or edit log file.
 
-info_log "Command executed: ${0}" 2>&1 | tee -a ${step_log_file}
+   info_log "$FUNCNAME:Command executed: ${0}"
 
-runArchive 2>&1 | tee -a ${step_log_file}
+   if ! runArchive; then
+      #todo map exit id to the step id to easily figure out which step failed.
+      exit 1
 
-return_exit_code=$?
+   fi
 
-error_log " Error code from Archive Procss: ${return_exit_code}" 2>&1 | tee -a ${step_log_file}
+   return 0
 
-exit $return_exit_code
+}
+
+prepare_log_file
+
+main 2>&1 | tee -a ${step_log_file}
