@@ -39,6 +39,8 @@ trap 'gen_prss_error ${LINENO} ${?}' ERR
 # Process Modules:
 #   runModule -- evaluate the steps files and execute the steps
 #   run_archive_logs -- evaluate all the previous executions and archive the required logs
+#   main -- evaluate all the previous executions and archive the required logs
+#   preproces -- evaluate all the previous executions and archive the required logs
 #######################################
 
 function runModule() {
@@ -83,16 +85,6 @@ function runModule() {
                 fi
 
         done
-
-}
-
-function main() {
-
-        info_log "$FUNCNAME:Command executed: ${0}"
-
-        if ! runModule; then
-                exit 1
-        fi
 
 }
 
