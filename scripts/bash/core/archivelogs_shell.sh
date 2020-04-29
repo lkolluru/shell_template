@@ -85,7 +85,9 @@ function process_archivelogs() {
 
 	info_log "$FUNCNAME: looping folders started in : ${LOG_PARENT_DIR}"
 
-	for activelogdir in $(ls -d ${LOG_PARENT_DIR}/*); do
+	dir_contents=($(ls -d ${LOG_PARENT_DIR}/*))
+	
+	for activelogdir in "${dir_contents[@]}"; do
 
 		logdir=${LOG_PARENT_DIR}/"$(basename ${activelogdir})"
 
@@ -95,7 +97,9 @@ function process_archivelogs() {
 
 		if [ -d ${logdir} ]; then
 
-			for logfile in $(ls ${logdir}); do
+			logfiles=($(ls ${logdir}))
+
+			for logfile in "${logfiles[@]}"; do
 
 				info_log "$FUNCNAME: $(basename ${logfile}) is the file name"
 
