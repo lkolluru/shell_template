@@ -33,7 +33,7 @@ function gen_jar_execution() {
     [ $return_code -eq 0 ] && info_log "$FUNCNAME: jar execution compelted successfully for ${JAR_FG}" && return 0
 }
 
-main() {
+function main() {
 
     info_log "$FUNCNAME:Command executed: ${0}"
 

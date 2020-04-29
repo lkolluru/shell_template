@@ -36,7 +36,7 @@ function gen_jar_execution() {
 #Setup new or edit log file.
 prepare_log_file
 
-main() {
+function main() {
 
     info_log "$FUNCNAME:Command executed: ${0}"
 

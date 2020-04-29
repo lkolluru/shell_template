@@ -56,7 +56,7 @@ function runArchive() {
 
 #Main Program
 
-main() {
+function main() {
 
    #export HDL_ROOT_DIRECTORY_REGEX;
    export SA_DEST_DIR

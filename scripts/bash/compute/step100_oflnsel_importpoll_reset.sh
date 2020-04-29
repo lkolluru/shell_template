@@ -34,12 +34,7 @@ function gen_jar_execution() {
 
 }
 
-#Main Program
-
-#Setup new or edit log file.
-prepare_log_file
-
-main() {
+function main() {
 
     info_log "$FUNCNAME:Command executed: ${0}"
 
@@ -50,5 +45,11 @@ main() {
     fi
 
 }
+
+#Main Program
+
+#Setup new or edit log file.
+prepare_log_file
+
 
 main 2>&1 | tee -a ${step_log_file}

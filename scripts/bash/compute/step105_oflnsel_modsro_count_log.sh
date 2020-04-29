@@ -10,7 +10,7 @@ trap 'gen_step_error ${LINENO} ${?}' ERR
 
 #Main Program
 
-load_control_table() {
+function load_control_table() {
 
     HIVE_SHELLFILE_NM=$(basename ${0})
     model_name="modsro"
@@ -21,17 +21,22 @@ load_control_table() {
     info_log "Command executed: ${0}" 
 
     if [ "${model_count}" != "" ] && [ "${model_count}" != "0" ]; then
+
         echo "${model_name},$(date '+%Y-%m-%d %H:%M:%S'),${model_count},${load_env}" >>${model_count_logging_file}
 
         info_log "$FUNCNAME:Entry made into model_count_log table" 
+
     else
+
         error_log "$FUNCNAME:Hive table: ${MODEL_COUNT_MODSRO_TABLE}  is empty or count retrieval failed. Log entry not made.  please check" 
         return 1
+
     fi
 
 }
 
-main() {
+function main() {
+
     info_log "$FUNCNAME:Command executed: ${0}"
 
     if ! load_control_table; then
