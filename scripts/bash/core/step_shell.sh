@@ -221,6 +221,10 @@ function clean_up() {
 
 	return_code=$?
 
+	status_file="/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/dev/oflnsel/activelogs/steplogs/oflnsel_status.txt"
+
+	echo "$(basename ${0}),${return_code}" >>${status_file}
+
 	[ $return_code -eq 0 ] && info_log "$FUNCNAME: $(basename ${0}) completed successfully" 2>&1 | tee -a ${step_log_file} && exit 0
 
 	[ $return_code -ne 0 ] && fatal_log "$FUNCNAME: $(basename ${0}) failed to complete and exiting with a consolidated exit code 1" 2>&1 | tee -a ${step_log_file} && exit ${return_code}
