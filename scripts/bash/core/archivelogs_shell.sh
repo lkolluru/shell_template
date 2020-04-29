@@ -17,9 +17,11 @@ function eval_directory() {
 
 	[ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && return 1
 
-	test_directory ${1}
+	if ! test_directory ${1}; then
 
-	[ $? -ne 0 ] && return 1
+		return 1
+
+	fi
 }
 
 function eval_archivedirectory() {
@@ -28,9 +30,11 @@ function eval_archivedirectory() {
 
 	ARCHIVE_LOG_DIR="${1}"
 
-	test_directory ${1}
+	if ! test_directory ${1}; then
 
-	[ $? -ne 0 ] && return 1
+		return 1
+
+	fi
 
 	TODAY_ARCHIVE_DIR=${ARCHIVE_LOG_DIR}/$(date +"%Y%m%d")
 
@@ -46,7 +50,9 @@ function eval_archivedirectory() {
 
 		mkdir ${TODAY_ARCHIVE_DIR}
 
-		[ $? -ne 0 ] && return 1
+		ret_code_eval_archivedirectory=$?
+
+		[ $ret_code_eval_archivedirectory -ne 0 ] && return 1
 
 	fi
 
@@ -66,13 +72,16 @@ function process_archivelogs() {
 
 	info_log "$FUNCNAME: parent folder is ARCHIVE_PARENT_DIR : ${ARCHIVE_PARENT_DIR}"
 
-	test_directory ${LOG_PARENT_DIR}
+	if ! test_directory ${LOG_PARENT_DIR}; then
 
-	[ $? -ne 0 ] && return 1
+		return 1
+	fi
 
-	test_directory ${ARCHIVE_PARENT_DIR}
+	if ! test_directory ${ARCHIVE_PARENT_DIR}; then
 
-	[ $? -ne 0 ] && return 1
+		return 1
+
+	fi
 
 	info_log "$FUNCNAME: looping folders started in : ${LOG_PARENT_DIR}"
 
@@ -100,7 +109,9 @@ function process_archivelogs() {
 
 					move_item "${logdir}/${logfile}" "${archivelogdir}"
 
-					[ $? -ne 0 ] && return 1
+					ret_code_move_item=$?
+
+					[ $ret_code_move_item -ne 0 ] && return 1
 
 				fi
 
