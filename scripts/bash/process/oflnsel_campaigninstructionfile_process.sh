@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Set Global Variables
-set -euo pipefail
+set -uo pipefail
 set -E
 set -o errtrace
 #######################################
@@ -37,57 +37,64 @@ trap 'gen_prss_error ${LINENO} ${?}' ERR
 # OFLNSEL Process Functions Repository Module
 # Process Modules:
 #   runModule -- evaluate the steps files and execute the steps
-#######################################
+####################################### 
+
 
 function runModule() {
 
-        test_path ${PROJ_STEPS_RUNFILE_CAMPAIGNINSTRUCTIONFILE}
+        if ! test_path ${PROJ_STEPS_RUNFILE_CAMPAIGNINSTRUCTIONFILE}; then
+                return 1
+        fi
 
-        cat "${PROJ_STEPS_RUNFILE_CAMPAIGNINSTRUCTIONFILE}" |
-                while read line; do
+        mapfile -t campaigninstruction_file_items <${PROJ_STEPS_RUNFILE_CAMPAIGNINSTRUCTIONFILE}
 
-                        cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
+        for line in ${campaigninstruction_file_items[@]}; do
 
-                        if [ "$cmnt" == "#" ]; then
+                cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
 
-                                info_log "$FUNCNAME:Skipping the step $line\n"
-                                continue
+                if [ "$cmnt" == "#" ]; then
 
-                        elif [ "$cmnt" == "" ]; then
+                        info_log "$FUNCNAME:Skipping the step $line\n"
+                        continue
 
-                                info_log "$FUNCNAME:Skipping empty line\n"
+                elif [ "$cmnt" == "" ]; then
 
-                        else
+                        info_log "$FUNCNAME:Skipping empty line\n"
 
-                                step_name="${PROJ_BASH_IMPORT_DIR}/${line}"
+                else
 
-                                test_path ${step_name}
+                        step_name="${PROJ_BASH_IMPORT_DIR}/${line}"
 
-                                set +e
-
-                                bash "${PROJ_BASH_IMPORT_DIR}/${line}"
-
-                                subprocess_return_code=$?
-
-                                [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit 1
-
-                                [ ${subprocess_return_code} -eq 0 ] && info_log "$FUNCNAME: ${step_name} completed successfully with ${subprocess_return_code}"
-
-                                unset step_name
-
+                        if ! test_path ${step_name}; then
+                                return 1
                         fi
 
-                done
-        set -e
+                        bash "${PROJ_BASH_IMPORT_DIR}/${line}"
+
+                        subprocess_return_code=$?
+
+                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit 1
+
+                        [ ${subprocess_return_code} -eq 0 ] && info_log "$FUNCNAME: ${step_name} completed successfully with ${subprocess_return_code}"
+
+                        unset step_name
+
+                fi
+
+        done
+
 }
 
 function main() {
 
         info_log "$FUNCNAME:Command executed: ${0}"
 
-        runModule
+        if ! runModule; then
+                exit 1
+        fi
 
 }
+
 
 #Main Program
 

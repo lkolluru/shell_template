@@ -40,65 +40,81 @@ trap 'gen_prss_error ${LINENO} ${?}' ERR
 #   runModule -- evaluate the steps files and execute the steps
 #   run_archive_logs -- evaluate all the previous executions and archive the required logs
 #######################################
+
 function runModule() {
 
-        test_path ${PROJ_STEPS_RUNFILE_COMPUTE}
+        if ! test_path ${PROJ_STEPS_RUNFILE_COMPUTE}; then
+                return 1
+        fi
 
-        [ $? -ne 0 ] && return 1
+        mapfile -t compute_file_items <${PROJ_STEPS_RUNFILE_COMPUTE}
 
-        cat "${PROJ_STEPS_RUNFILE_COMPUTE}" |
-                while read line; do
+        for line in ${compute_file_items[@]}; do
 
-                        cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
+                cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
 
-                        if [ "$cmnt" == "#" ]; then
+                if [ "$cmnt" == "#" ]; then
 
-                                info_log "$FUNCNAME:Skipping the step $line\n"
-                                continue
+                        info_log "$FUNCNAME:Skipping the step $line\n"
+                        continue
 
-                        elif [ "$cmnt" == "" ]; then
+                elif [ "$cmnt" == "" ]; then
 
-                                info_log "$FUNCNAME:Skipping empty line\n"
+                        info_log "$FUNCNAME:Skipping empty line\n"
 
-                        else
+                else
 
-                                step_name="${PROJ_BASH_COMPUTE_DIR}/${line}"
+                        step_name="${PROJ_BASH_IMPORT_DIR}/${line}"
 
-                                test_path ${step_name}
-
-                                bash "${PROJ_BASH_COMPUTE_DIR}/${line}"
-
-                                subprocess_return_code=$?
-
-                                [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && return ${subprocess_return_code}
-
-                                [ ${subprocess_return_code} -eq 0 ] && info_log "$FUNCNAME: ${step_name} completed successfully with ${subprocess_return_code}" && return 0
-
-                                unset step_name
-
+                        if ! test_path ${step_name}; then
+                                return 1
                         fi
 
-                done
+                        bash "${PROJ_BASH_IMPORT_DIR}/${line}"
+
+                        subprocess_return_code=$?
+
+                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit 1
+
+                        [ ${subprocess_return_code} -eq 0 ] && info_log "$FUNCNAME: ${step_name} completed successfully with ${subprocess_return_code}"
+
+                        unset step_name
+
+                fi
+
+        done
+
+}
+
+function main() {
+
+        info_log "$FUNCNAME:Command executed: ${0}"
+
+        if ! runModule; then
+                exit 1
+        fi
 
 }
 
 function run_archive_logs() {
 
-        test_path ${ARCHIVE_LOG_SHELL}
-
-        [ $? -ne 0 ] && return 1
+        if ! test_path ${ARCHIVE_LOG_SHELL}; then
+                return 1
+        fi
 
         info_log "$FUNCNAME:evaluation of the log directories for  ${ARCHIVE_LOG_DIRECTORY} started"
 
-        eval_archivedirectory ${ARCHIVE_LOG_DIRECTORY}
+        if ! eval_archivedirectory ${ARCHIVE_LOG_DIRECTORY}; then
 
-        [ $? -ne 0 ] && return 1
+                return 1
+
+        fi
 
         info_log "$FUNCNAME:archival of the logs in the directories for ${ACTIVE_LOG_DIRECTORY} started"
 
-        process_archivelogs ${ACTIVE_LOG_DIRECTORY} ${ARCHIVE_LOG_DIRECTORY}
-
-        [ $? -ne 0 ] && return 1
+        if ! process_archivelogs ${ACTIVE_LOG_DIRECTORY} ${ARCHIVE_LOG_DIRECTORY}; then
+                return 1
+        fi
 
         info_log "$FUNCNAME:evaludation and archival of the logs in the directories for ${ARCHIVE_LOG_DIRECTORY} completed" && return 0
 
@@ -125,7 +141,7 @@ function main() {
         info_log "$FUNCNAME:Command executed: ${0}"
 
         runModule
-        
+
         main_return_code=$?
 
         [ $main_return_code -ne 0 ] && fatal_log "$FUNCNAME:unable to complete successfully failing the process" && exit ${main_return_code}

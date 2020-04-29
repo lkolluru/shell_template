@@ -57,7 +57,8 @@ function check_file_date() {
     current_preselection_file=$(find ${PRESELECTION_FILE_DIR} -type f -name '*_N.tar.gz')
     original_zip_file_name=$(basename ${current_preselection_file})
     processed_zip_filename=$(echo ${original_zip_file_name} | cut -f2 -d'_')
-    preselection_file_date=$(expr substr ${processed_zip_filename} 1 8)
+    preselection_file_date="$(echo ${processed_zip_filename} | awk '{ print substr($0,length($0) 1,8) }')"
+
 
     if [ $preselection_file_date -gt $wk_date ]; then
         info_log "$ENV_FLAG_UPPER:OFLNSEL-New Preselection File received for date $preselection_file_date."
