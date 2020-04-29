@@ -41,7 +41,7 @@ prepare_log_file
 
 main() {
 
-    info_log "Command executed: ${0}"
+    info_log "$FUNCNAME:Command executed: ${0}"
 
     cd ${JAR_DIRECTORY}
 

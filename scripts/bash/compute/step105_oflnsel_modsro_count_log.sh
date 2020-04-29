@@ -1,7 +1,8 @@
 #!/bin/bash 
 
 #Set Global Variables
-set -o pipefail
+set -uo pipefail
+set -E
 set -o errtrace
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
 trap clean_up SIGINT SIGHUP SIGTERM EXIT

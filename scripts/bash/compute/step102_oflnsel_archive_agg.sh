@@ -64,7 +64,7 @@ main() {
 
    #Setup new or edit log file.
 
-   info_log "Command executed: ${0}"
+   info_log "$FUNCNAME:Command executed: ${0}"
 
    if ! runArchive; then
       #todo map exit id to the step id to easily figure out which step failed.
