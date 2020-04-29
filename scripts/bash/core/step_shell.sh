@@ -108,7 +108,7 @@ function gen_core_error() {
 #######################################
 function prepare_log_file() {
 
-	log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g')
+	log_file_name=$($(basename ${0}) | sed 's/\.sh//g')
 
 	step_log_file=$(append_character ${log_directory} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d").log
 
@@ -142,7 +142,7 @@ function prepare_log_file() {
 
 function prepare_jar_log_file() {
 
-	log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g')
+	log_file_name=$($(basename ${0}) | sed 's/\.sh//g')
 
 	jar_log_file=$(append_character ${log_directory} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d_%H_%M_%S").log
 
@@ -176,7 +176,7 @@ function prepare_jar_log_file() {
 
 function prepare_shell_jar_log_file() {
 
-	log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g')
+	log_file_name=$($(basename ${0}) | sed 's/\.sh//g')
 
 	shell_jar_log_file=$(append_character ${log_directory} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d").log
 

@@ -58,7 +58,7 @@ function move_campaign_files() {
 
     fi 
 
-    if ! move_items ${UNZIP_CAMPAIGN_FILE_DIR} ${CAMPAIGN_DATA_FILE_DIR}
+    if ! move_items ${UNZIP_CAMPAIGN_FILE_DIR} ${CAMPAIGN_DATA_FILE_DIR}; then 
 
      return 1
 
