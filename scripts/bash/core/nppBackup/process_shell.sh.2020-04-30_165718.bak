@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Functions 
-#exit 254 reserved for any framework failures
+#EXIT 300 reserved for any framework failures
 #EXIT 200 reserved for any validation failures to generate appropriate warnings
 
 #######################################
@@ -20,7 +20,7 @@ function generic_log_message() {
 
 function info_log() {
 
-        [ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && exit 254
+        [ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && exit 300
 
         _message=${1}
         echo -e $(generic_log_message) "[INFO]:- ${_message}"
@@ -29,7 +29,7 @@ function info_log() {
 
 function warn_log() {
 
-        [ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && exit 254
+        [ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && exit 300
 
         _message=${1}
         echo -e $(generic_log_message) "[WARN]:- ${_message}"
@@ -38,7 +38,7 @@ function warn_log() {
 
 function error_log() {
 
-        [ $# -eq 0 ] && echo "$FUNCNAME: at least one argument is required" && exit 254
+        [ $# -eq 0 ] && echo "$FUNCNAME: at least one argument is required" && exit 300
 
         _message=${1}
         echo -e $(generic_log_message) "[ERROR]:- ${_message}"
@@ -47,7 +47,7 @@ function error_log() {
 
 function fatal_log() {
 
-        [ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && exit 254
+        [ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && exit 300
 
         _message=${1}
         echo -e $(generic_log_message) "[FATAL]:- ${_message}"
@@ -64,18 +64,18 @@ function fatal_log() {
 #######################################
 function prepare_log_file() {
 
-       $ {
-                log_file_name=$($(basename ${0}); | sed 's/\.sh//g');
+        {
+                log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g');
                 log_file=$(append_character "${log_directory}" "/")$(append_character "${log_file_name}" "_")$(date +"%Y_%m_%d").log;
                 subject_area="${log_subject_area}";
         }
         local critical_fail_ret_code=$?
 
-        [ ${critical_fail_ret_code} -ne 0 ] && exit 254
+        [ critical_fail_ret_code -ne 0 ] && exit 300
 
         if [ ! -d $(append_character "${log_directory}" "/") ]; then
                 fatal_log "Log directory ${log_directory} does not exist."
-                exit 254
+                exit 300
         fi
 
         if [ -e ${log_file} ]; then
@@ -93,7 +93,7 @@ function prepare_log_file() {
 
 function prepare_archivelog_file() {
 
-       $ {
+        {
                 archivelogdir="/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/${ENV_FLAG}/oflnsel/archivelogs/archwrkflwlogs";
                 log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g');
                 archivelog_file=$(append_character ${archivelogdir} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d_%H_%M_%S").log;
@@ -101,11 +101,11 @@ function prepare_archivelog_file() {
         }
         local critical_fail_ret_code=$?
 
-        [ ${critical_fail_ret_code} -ne 0 ] && exit 254
+        [ critical_fail_ret_code -ne 0 ] && exit 300
 
         if [ ! -d $(append_character ${archivelogdir} "/") ]; then
                 fatal_log "Log directory ${archivelogdir} does not exist."
-                exit 254
+                exit 300
         fi
 
         if [ -e ${archivelog_file} ]; then
@@ -184,7 +184,7 @@ function send_warning_email() {
 #######################################
 function append_character() {
 
-        [ $# -ne 2 ] && error_log "$FUNCNAME: at least 2 arguments are required" && exit 254
+        [ $# -ne 2 ] && error_log "$FUNCNAME: at least 2 arguments are required" && exit 300
 
         value_passed="${1}"
 
