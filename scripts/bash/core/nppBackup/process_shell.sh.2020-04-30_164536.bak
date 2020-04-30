@@ -71,7 +71,7 @@ function prepare_log_file() {
         }
         local critical_fail_ret_code=$?
 
-        [ critical_fail_ret_code -ne 0 ] && exit 300
+        [critical_fail_ret_code -ne 0] && exit 300
 
         if [ ! -d $(append_character "${log_directory}" "/") ]; then
                 fatal_log "Log directory ${log_directory} does not exist."
@@ -101,7 +101,7 @@ function prepare_archivelog_file() {
         }
         local critical_fail_ret_code=$?
 
-        [ critical_fail_ret_code -ne 0 ] && exit 300
+        [critical_fail_ret_code -ne 0] && exit 300
 
         if [ ! -d $(append_character ${archivelogdir} "/") ]; then
                 fatal_log "Log directory ${archivelogdir} does not exist."
