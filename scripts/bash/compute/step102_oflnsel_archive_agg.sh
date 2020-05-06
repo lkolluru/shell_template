@@ -44,11 +44,17 @@ function runArchive() {
 
          gcp_consolidated_archive_push_ret_code=$?
 
-         [ $gcp_consolidated_archive_push_ret_code -ne 0 ] && return 1 || return 0
+         if [ $gcp_consolidated_archive_push_ret_code -ne 0 ]; then  
+
+         return 1
+         
+         fi 
 
       fi
 
    done
+   
+   return 0 
 
 }
 

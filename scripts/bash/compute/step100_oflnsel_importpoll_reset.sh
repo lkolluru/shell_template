@@ -5,6 +5,7 @@ set -uo pipefail
 set -E
 set -o errtrace
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
+source ${FILE_HANDLER_SCRIPT}
 trap clean_up SIGINT SIGHUP SIGTERM EXIT
 trap 'gen_step_error ${LINENO} ${?}' ERR
 
@@ -43,6 +44,7 @@ function main() {
     if ! gen_jar_execution ${CALCENGINE_JAR_VER_NAME} ${LIBJARS} ${JAR_ENV} ${JAR_FG} ${JAR_RESOURCES} ${PWD_FILE_RES}; then
         exit 1
     fi
+    
 
 }
 
@@ -50,6 +52,5 @@ function main() {
 
 #Setup new or edit log file.
 prepare_log_file
-
 
 main 2>&1 | tee -a ${step_log_file}

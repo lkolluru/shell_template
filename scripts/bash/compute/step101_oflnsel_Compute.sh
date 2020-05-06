@@ -5,6 +5,7 @@ set -uo pipefail
 set -E
 set -o errtrace
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
+source ${FILE_HANDLER_SCRIPT}
 trap clean_up SIGINT SIGHUP SIGTERM EXIT
 trap 'gen_step_error ${LINENO} ${?}' ERR
 
@@ -33,9 +34,6 @@ function gen_jar_execution() {
     [ $return_code -eq 0 ] && info_log "$FUNCNAME: jar execution compelted successfully for ${JAR_FG}" && return 0
 }
 
-#Setup new or edit log file.
-prepare_log_file
-
 function main() {
 
     info_log "$FUNCNAME:Command executed: ${0}"
@@ -49,5 +47,8 @@ function main() {
     fi 
     
 }
+
+#Setup new or edit log file.
+prepare_log_file
 
 main 2>&1 | tee -a ${step_log_file}

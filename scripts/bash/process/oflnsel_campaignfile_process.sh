@@ -49,7 +49,7 @@ function runModule() {
 
         mapfile -t campaign_file_items <${PROJ_STEPS_RUNFILE_CAMPAIGNFILE}
 
-        for line in ${campaign_file_items[@]}; do
+        for line in "${campaign_file_items[@]}"; do
 
                 cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
 

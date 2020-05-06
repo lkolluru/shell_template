@@ -42,7 +42,7 @@ trap 'gen_prss_error ${LINENO} ${?}' ERR
 
 function runModule() {
 
-        if ! test_path ${PROJ_STEPS_RUNFILE_EXPORT}; then
+        if ! test_path "${PROJ_STEPS_RUNFILE_EXPORT}"; then
                 return 1
         fi
 
@@ -63,17 +63,17 @@ function runModule() {
 
                 else
 
-                        step_name="${PROJ_BASH_IMPORT_DIR}/${line}"
+                        step_name="${PROJ_BASH_POSTSCORING_DIR}/${line}"
 
                         if ! test_path ${step_name}; then
                                 return 1
                         fi
 
-                        bash "${PROJ_BASH_IMPORT_DIR}/${line}"
+                        bash "${PROJ_BASH_POSTSCORING_DIR}/${line}"
 
                         subprocess_return_code=$?
 
-                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit 1
+                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit ${subprocess_return_code}
 
                         [ ${subprocess_return_code} -eq 0 ] && info_log "$FUNCNAME: ${step_name} completed successfully with ${subprocess_return_code}"
 

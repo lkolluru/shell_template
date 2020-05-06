@@ -6,8 +6,8 @@ set -E
 set -o errtrace
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
 source ${FILE_HANDLER_SCRIPT}
-trap clean_up SIGINT SIGHUP SIGTERM EXIT
 trap 'gen_step_error ${LINENO} ${?}' ERR
+trap clean_up SIGINT SIGHUP SIGTERM EXIT
 
 function unzip_tarfiles() {
 
@@ -100,6 +100,8 @@ function post_process_validations() {
 
 function main() {
 
+    info_log "$FUNCNAME:Command executed: ${0}"
+
     if ! unzip_tarfiles; then
         exit 1
     fi
@@ -118,7 +120,5 @@ function main() {
 
 #Setup new or edit log file.
 prepare_log_file
-
-info_log "Command executed: ${0}" 2>&1 | tee -a ${step_log_file}
 
 main 2>&1 | tee -a ${step_log_file}

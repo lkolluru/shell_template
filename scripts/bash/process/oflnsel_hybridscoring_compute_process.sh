@@ -53,7 +53,7 @@ function runModule() {
 
         mapfile -t hybridscoring_file_items <${PROJ_STEPS_RUNFILE_HYBRIDSCORING_COMPUTE}
 
-        for line in ${hybridscoring_file_items[@]}; do
+        for line in "${hybridscoring_file_items[@]}"; do
 
                 cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
 

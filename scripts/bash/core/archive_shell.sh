@@ -2,15 +2,15 @@
 
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
 source ${FILE_HANDLER_SCRIPT}
-
+set -o errtrace
 #######################################
 # Cloud Storage Archival Repository Functions Repository Module
 # Repostiory archival Modules:
 #   copy_items_gcp
 #   test_hivetable
 #   add_partition_gcp
-#   addPartition
-#   decideBucket
+#   copy_hdfs_cloud
+#   gcp_consolidated_archive_push
 
 #######################################
 
@@ -77,7 +77,7 @@ function add_partition_gcp() {
 
 	[ -z "${PARTITION_QUERY}" ] && error_log "$FUNCNAME:${PARTITION_QUERY} is empty value failing the process" && return 1
 
-	if ! test_hivetable "SHOW CREATE TABLE ${1}_S3ARCH"; then
+	if ! test_hivetable "${1}_S3ARCH"; then
 
 		error_log "Archive table not present for this hive table: ${1}"
 
@@ -88,7 +88,7 @@ function add_partition_gcp() {
 	if ! beehive "${PARTITION_QUERY}"; then
 		return 1
 	else
-		"$FUNCNAME:${PARTITION_QUERY} executed and updated table in CDA" && return 0
+		info_log "$FUNCNAME:${PARTITION_QUERY} executed and updated table in CDA" && return 0
 	fi
 
 }
@@ -215,8 +215,6 @@ function gcp_consolidated_archive_push() {
 		copy_hdfs_cloud_ret_code=$?
 
 		[ $copy_hdfs_cloud_ret_code -ne 0 ] && error_log "$FUNCNAME:copy to gcs cloud dir failed" && return 1
-
-		#[ $copy_hdfs_cloud_ret_code -eq 0 ] && return 0
 
 		add_partition_gcp "${1}" "${ARCHIVE_DATE}"
 

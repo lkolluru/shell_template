@@ -10,15 +10,14 @@ source ${FILE_HANDLER_SCRIPT}
 trap clean_up SIGINT SIGHUP SIGTERM EXIT
 trap 'gen_step_error ${LINENO} ${?}' ERR
 
-
 #Functions
 
 function runArchive() {
-   cat ${MODSRO_EXPORT_ARCHIVE_TABLES_FILE} |
+   cat ${HYBRID_SCORES_ARCHIVE_TABLES_FILE} |
       while read line; do
          cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
          if [ "$cmnt" == "#" ]; then
-            info_log"Skipping the archive step $line\n"
+            info_log "Skipping the archive step $line\n"
             continue
          elif [ "$cmnt" == "" ]; then
             info_log "Skipping empty line\n"

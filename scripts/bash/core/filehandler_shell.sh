@@ -1,16 +1,18 @@
 #!/bin/bash
+set -o errtrace
+set -o functrace
 
 ######################################
-# Linux file operations module:
-#   move_item
-#   get_content
+# Linux file operations module: EVALUATION FUNCTIONS
+#   test_content
 #   test_path
-#   expand_archive
-#   compress_archive
-#   copy_item
-#   remove_item
-#   rename_ftpitem
+#   test_directory
 #   test_directory_contents
+#   test_directory_cloud
+#   test_directory_contents_cloud
+#   test_cda_regex
+#   test_cda_regex_cloud -- work in progress regex fails
+
 #######################################
 
 function test_content() {
@@ -89,6 +91,7 @@ function test_directory_contents() {
         fi
 
         count=$(find ${1} -mindepth 1 -type f | wc -l)
+        ##count=$(hadoop fs -ls ${1} | awk '{system("hdfs dfs -count " $6) }')
 
         [ ${count} -eq 0 ] && error_log "$FUNCNAME: directory does not have any contents" && return 1
 
@@ -104,9 +107,10 @@ function test_directory_cloud() {
 
         cloud_dir=${1}
 
-        if $(hadoop fs -test -d "${cloud_dir}"); 
-        then test_dir_return_code=0; 
-        else test_dir_return_code=1; 
+        if $(hadoop fs -test -d "${cloud_dir}"); then
+                test_dir_return_code=0
+        else
+                test_dir_return_code=1
         fi
 
         [ $test_dir_return_code -ne 0 ] && info_log "$FUNCNAME: directory is not present in the cloud storagedir ${cloud_dir}" && return 1
@@ -126,6 +130,7 @@ function test_directory_contents_cloud() {
         fi
 
         count=$(hadoop fs -ls -R ${1} | grep -E '^-' | wc -l)
+        #count=$(hadoop fs -ls ${1} | awk '{system("hdfs dfs -count " $6) }')
 
         [ ${count} -eq 0 ] && error_log "$FUNCNAME: directory does not have any contents" && return 1
 
@@ -141,11 +146,11 @@ function test_cda_regex() {
 
         local dir_name=${1}
 
-        cda_folder=$(echo "${dir_name}" | grep -E -o "\/${CDA_FILE_REGEX}.*[^\']") || true
+        cda_folder=$(echo "${dir_name}" | grep -E -o "\/${CDA_FILE_REGEX}.*[^\']") || true ## to handle pipefails parsing is done on the output value
 
-        [ -z "${cda_folder}" ] && [ "${cda_folder}" != " " ] && fatal_log "$FUNCNAME: ${dir_name} location is not a valid cda location" && return 1
+        [ -z "${cda_folder}" ] && fatal_log "$FUNCNAME: ${dir_name} location is not a valid cda location" && return 1
 
-        [ ! -z "${cda_folder}" ] && [ "${cda_folder}" != " " ] && info_log "$FUNCNAME: ${dir_name} location is a valid cda location" && return 0
+        [ ! -z "${cda_folder}" ] && info_log "$FUNCNAME: ${dir_name} location is a valid cda location" && return 0
 
 }
 
@@ -163,6 +168,17 @@ function test_cda_regex_cloud() {
 
         [ !-z "${cda_folder}" ] && [ "${cda_folder}" != " " ] && info_log "$FUNCNAME: ${dir_name} location is a valid cda location" && return 0
 }
+
+######################################
+# Linux file operations module: FILE OPERATION FUNCTIONS
+#   move_item
+#   expand_archive
+#   compress_archive
+#   copy_item
+#   remove_items
+#   move_items
+#   rename_ftpitem
+#######################################
 
 function move_item() {
         : '
@@ -244,6 +260,14 @@ function compress_archive() {
         '
         [ $# -ne 3 ] && error_log "$FUNCNAME: at least 3 argument is required" && return 1
 
+        if ! test_directory_contents $1; then
+                return 1
+        fi
+
+        if ! test_directory $2; then
+                return 1
+        fi
+
         cd "${2}" && zip -rq -j "${3}" "${1}"
 
         compress_return_code=$?
@@ -279,9 +303,9 @@ function copy_item() {
 
         hadoop fs -cp ${1} ${2}
 
-        copy_return_code=$?
+        copy_item_rc=$?
 
-        if [ $copy_return_code -ne 0 ]; then
+        if [ $copy_item_rc -ne 0 ]; then
 
                 error_log "$FUNCNAME:Unable to copy objects from ${1} to ${2}"
 
@@ -313,7 +337,7 @@ function remove_items() {
 
         files=($(hadoop fs -ls ${directory} | awk '!/^d/ {print $8}'))
 
-        [ ${#files[@]} -eq 0 ] && error_log "$FUNCNAME: ${directory} did not generate any records" && return 1
+        [ ${#files[@]} -eq 0 ] && warn_log "$FUNCNAME: ${directory} did not generate any records" && return 1
 
         info_log "$FUNCNAME:${files} list evaluated for removal"
 
@@ -322,6 +346,15 @@ function remove_items() {
                 if [ -f "${file}" ]; then
 
                         rm -v ${file}
+
+                        remove_items_rc=$?
+
+                        if [ $remove_items_rc -ne 0 ]; then
+
+                                error_log "$FUNCNAME:Unable to remove file from ${file} "
+
+                                return 1
+                        fi
 
                 else
 
@@ -361,7 +394,7 @@ function move_items() {
 
         files=($(hadoop fs -ls ${source_directory} | awk '!/^d/ {print $8}'))
 
-        [ ${#files[@]} -eq 0 ] && error_log "$FUNCNAME: ${source_directory} did not generate any records" && return 1
+        [ ${#files[@]} -eq 0 ] && warn_log "$FUNCNAME: ${source_directory} did not generate any records" && return 1
 
         for file in ${files[@]}; do
 
@@ -370,9 +403,9 @@ function move_items() {
                 if [ -s "${file}" ]; then
 
                         move_item ${file} ${destination_directory}
-                        move_return_code=$?
+                        move_items_rc=$?
 
-                        [ $move_return_code -ne 0 ] && return 1
+                        [ ${move_items_rc} -ne 0 ] && return 1
 
                 else
 
@@ -402,13 +435,24 @@ function rename_ftpitem() {
         #objLocationTrgt=${FILE_ROOT_DIR}/"$modelname"/compressfilestozip/
         #zipFileName="$modelname"_Scores_Details_"$wkdt"T.zip
         #zipFileNameN="$modelname"_Scores_Details_"$wkdt"N.zip
+        if ! test_path ${1}; then
+                return 1
+        fi
 
-        sshpass -p ${5} sftp ${6} <<!
+        if [ -z ${2} ] || [ -z ${3} ] || [ -z ${4} ] || [ -z ${5} ] || [ -z ${6} ]; then
+
+                error_log "$FUNCNAME:Blank vairables provided which can not be handled by the sftp process"
+                return 1
+        fi
+
+        sshpass -p ${5} sftp -b -${6} <<EOF 2>&1 | tee -a ${step_log_file}
                 cd ${2} 
                 put ${1}
                 rename ${3} ${4}
-!
-        ftp_return_code=$?
+EOF
+
+        ftp_return_code=${PIPESTATUS[0]}
+
         if [ $ftp_return_code -ne 0 ]; then
 
                 error_log " ${3} File transfer to ${6} failed"
@@ -420,6 +464,52 @@ function rename_ftpitem() {
         fi
 
 }
+
+function measure_item() {
+
+        : '
+                $1=sourcefile
+                $2=flag_include_header
+        '
+        [ $# -ne 1 ] && error_log "$FUNCNAME: at least two argument is required" && return 1
+
+        local def_flag_include_header=0
+        local _file_count
+
+        flag_include_header=${2:-$def_flag_include_header}
+
+        if ! test_path "${1}"; then
+
+                error_log "$FUNCNAME: source function error"
+                return 1
+
+        fi >/dev/null
+
+        if [ $flag_include_header -ne 0 ]; then
+
+                _file_count=$(wc -l ${1} | awk '{ print $1 }')
+
+        else
+                _file_count=$(awk ' NR>1' ${1} | wc -l)
+        fi
+
+        measure_item_rc=$?
+
+        if [ $measure_item_rc -ne 0 ] && [ -z ${_file_count} ]; then
+
+                error_log "$FUNCNAME: can not count lines in the files"
+                return 1
+        fi
+
+        echo "${_file_count}"
+
+}
+
+######################################
+# Linux file operations module: FILE OPERATION FUNCTIONS
+#   copy_items_cloud
+#   remove_directory_cloud
+#######################################
 
 function copy_items_cloud() {
         : '
@@ -438,9 +528,9 @@ function copy_items_cloud() {
 
                 eval ${copy_to_gs_command} >/dev/null
 
-                gcp_copy_ret_code=$?
+                copy_items_cloud_rc=$?
 
-                [ $gcp_copy_ret_code -ne 0 ] && fatal_log "$FUNCNAME:${copy_to_gs_command} failed to execute" && return 1
+                [ $copy_items_cloud_rc -ne 0 ] && fatal_log "$FUNCNAME:${copy_to_gs_command} failed to execute" && return 1
 
                 info_log "$FUNCNAME:Data copied to GCP" && return 0
 
@@ -458,7 +548,7 @@ function remove_directory_cloud() {
         '
         [ $# -ne 1 ] && error_log "$FUNCNAME: at least 1 argument is required" && return 1
 
-        #test_directory_cloud ${1}
+        #test_directory_cloud ${1} regex not working
 
         #[ $? -ne 0 ] && info_log "$FUNCNAME:directory does not exist in gcp not needed for removal ${1}" && return 0
 
@@ -466,11 +556,11 @@ function remove_directory_cloud() {
 
                 hadoop fs -rm -skipTrash -r "${1}/"
 
-                remove_directory_cloud_ret_code=$?
+                remove_directory_cloud_rc=$?
 
-                [ $remove_directory_cloud_ret_code -eq 0 ] && info_log "$FUNCNAME:removed all objects from gcp ${1}" && return 0
+                [ $remove_directory_cloud_rc -eq 0 ] && info_log "$FUNCNAME:removed all objects from gcp ${1}" && return 0
 
-                [ $remove_directory_cloud_ret_code -ne 0 ] && error_log "$FUNCNAME:Unable to remove objects from gcp ${1}" && return 1
+                [ $remove_directory_cloud_rc -ne 0 ] && error_log "$FUNCNAME:Unable to remove objects from gcp ${1}" && return 1
 
         else
 

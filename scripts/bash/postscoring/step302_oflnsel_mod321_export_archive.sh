@@ -1,15 +1,19 @@
 #!/bin/bash
 
 #Set Global Variables
-set -e
-set -u
-set -o pipefail
-
+set -uo pipefail
+set -E
+set -o errtrace
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
+source ${CE_HDLP_S3ARCHIVE_SCRIPT}
+source ${FILE_HANDLER_SCRIPT}
+trap clean_up SIGINT SIGHUP SIGTERM EXIT
+trap 'gen_step_error ${LINENO} ${?}' ERR
 
 #Functions
 
 function runArchive() {
+
    cat ${MOD321_EXPORT_ARCHIVE_TABLES_FILE} |
       while read line; do
          cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented

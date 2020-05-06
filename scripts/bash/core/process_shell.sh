@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Functions 
+#Functions
 #exit 254 reserved for any framework failures
 #EXIT 200 reserved for any validation failures to generate appropriate warnings
 
@@ -64,21 +64,22 @@ function fatal_log() {
 #######################################
 function prepare_log_file() {
 
-       $ {
-                log_file_name=$($(basename ${0}); | sed 's/\.sh//g');
-                log_file=$(append_character "${log_directory}" "/")$(append_character "${log_file_name}" "_")$(date +"%Y_%m_%d").log;
-                subject_area="${log_subject_area}";
+        {
+                log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+                        log_file=$(append_character "${log_directory}" "/")$(append_character "${log_file_name}" "_")$(date +"%Y_%m_%d").log &&
+                        subject_area="${log_subject_area}"
         }
-        local critical_fail_ret_code=$?
 
-        [ ${critical_fail_ret_code} -ne 0 ] && exit 254
+        local prepare_log_file_rc=$?
+
+        [ ${prepare_log_file_rc} -ne 0 ] && exit 254
 
         if [ ! -d $(append_character "${log_directory}" "/") ]; then
                 fatal_log "Log directory ${log_directory} does not exist."
                 exit 254
         fi
 
-        if [ -e ${log_file} ]; then
+        if [ -e "${log_file}" ]; then
                 info_log "----------------------APPLICATION LOG:-------------------------------------------------" 2>&1 | tee -a ${log_file}
                 info_log "Log file ${log_file} already exists. Starting new ${subject_area} process." 2>&1 | tee -a ${log_file}
         else
@@ -87,21 +88,25 @@ function prepare_log_file() {
                 info_log "Created new ${log_file}. Starting new ${subject_area} process." 2>&1 | tee -a ${log_file}
         fi
 
-        prepare_status_file
+        if ! prepare_status_file; then 
+
+                fatal_log "Unable to prepare log file" && exit 254 2>&1 | tee -a ${log_file}
+        fi 
 
 }
 
 function prepare_archivelog_file() {
 
-       $ {
-                archivelogdir="/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/${ENV_FLAG}/oflnsel/archivelogs/archwrkflwlogs";
-                log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g');
-                archivelog_file=$(append_character ${archivelogdir} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d_%H_%M_%S").log;
-                subject_area="${log_subject_area}";
+        {
+                archivelogdir="/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/${ENV_FLAG}/${FUNCTIONAL_GROUP}/archivelogs/archwrkflwlogs" &&
+                        log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+                        archivelog_file=$(append_character ${archivelogdir} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d_%H_%M_%S").log &&
+                        subject_area="${log_subject_area}"
         }
-        local critical_fail_ret_code=$?
 
-        [ ${critical_fail_ret_code} -ne 0 ] && exit 254
+        local prepare_archivelog_file_rc=$?
+
+        [ ${prepare_archivelog_file_rc} -ne 0 ] && exit 254
 
         if [ ! -d $(append_character ${archivelogdir} "/") ]; then
                 fatal_log "Log directory ${archivelogdir} does not exist."
@@ -121,11 +126,21 @@ function prepare_archivelog_file() {
 
 function prepare_status_file() {
 
-        export status_file="${log_directory}/${FUNCTIONAL_GROUP}_$(basename ${0})_status.cdastatus"
+        {
+                process_status_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+                        export process_status_file="${log_directory}/${process_status_file_name}$(date +"%Y_%m_%d").txt"
+        }
 
-        if [ ! -e ${status_file} ]; then
-                touch ${status_file}
-                echo "step_name","status_code" >${status_file}
+         prepare_status_file_rc=$?
+
+        [ ${prepare_status_file_rc} -ne 0 ] && exit 254
+
+        if [ ! -e ${process_status_file} ]; then
+
+                touch ${process_status_file}
+
+                echo "step_name","status_code" >${process_status_file}
+
         fi
 
 }
@@ -135,6 +150,7 @@ function prepare_status_file() {
 # Email Modules:
 #   send_success_email
 #   send_mainscript_failure_email
+#   send_warning_email
 
 #######################################
 function send_success_email() {
@@ -207,27 +223,40 @@ function cleanup() {
 
         [ $return_code -eq 200 ] && info_log "$FUNCNAME: $(basename ${0}) completed with warnings" 2>&1 | tee -a ${log_file} && send_warning_email && exit 0
 
-        [ $return_code -ne 0 ] && fatal_log "$FUNCNAME: $(basename ${0}) failed to complete and exiting with a consolidated exit code ${return_code}" 2>&1 | tee -a ${log_file} && send_mainscript_failure_email && trap - ERR && exit ${return_code}
+        [ $return_code -eq 254 ] && fatal_log "$FUNCNAME: $(basename ${0}) failed with framework errors" && exit $return_code ### can not capture these in the step log files but will be visible from the control M console.
+
+        [ $return_code -ne 0 ] && fatal_log "$FUNCNAME: $(basename ${0}) failed to complete and exiting with a consolidated exit code ${return_code}" 2>&1 | tee -a ${log_file} && send_mainscript_failure_email && exit ${return_code}
 
 }
 
 #######################################
 # Error Handling Functions Repository Module
 # Error Handling Modules:
-#   gen_prss_error
-#   gen_cron_prss_error
-#   gen_core_error
+#   gen_prss_error full stack trace for the application functions to determine the RC if return traps are enabled.
+#   gen_prss_return_handler top caller for the functions.
 
 #######################################
+
 function gen_prss_error() {
 
-        [ $# -ne 2 ] && error_log "$FUNCNAME: at least 2 arguments are required" && return 1
+        [ $# -ne 2 ] && error_log "$FUNCNAME: at least 2 arguments are required" && exit 254
 
-        #TODO consolidate all failure lines into a associatve array and preserve for downstream dependency
+        local full_trace=${#FUNCNAME[@]}
 
-        JOB="$0"      # job name
-        LASTLINE="$1" # line of error occurrence
-        LASTERR="$2"  # error code
-        error_log "$FUNCNAME: ${JOB} : line ${LASTLINE} produced error code ${LASTERR}"
+        for ((i = 1; i < $full_trace; i++)); do
+                local func="${FUNCNAME[$i]}"
+                local line="${BASH_LINENO[$((i - 1))]}"
+                local src="${BASH_SOURCE[$((i - 1))]}"
+                printf '%*s' $i '' # indent only for console not the log file
+                error_log "GEN PRSS at: $func(), $src, line $line"
+        done
+}
 
+function gen_prss_return_handler() {
+
+        local func="${FUNCNAME[1]}"
+        local line="${BASH_LINENO[0]}"
+        local src="${BASH_SOURCE[0]}"
+        printf '%*s' 1 ''
+        echo "FUNCTION_TRACE:called from: $func(), $src, line $line"
 }

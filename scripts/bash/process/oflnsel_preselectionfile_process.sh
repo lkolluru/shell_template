@@ -2,7 +2,6 @@
 
 #Set Global Variables
 set -uo pipefail
-set -E
 set -o errtrace
 #######################################
 # OFLNSEL WORKFLOW RE_DIRECT Repository Module
@@ -47,9 +46,9 @@ function runModule() {
 
         mapfile -t preselection_file_items <${PROJ_STEPS_RUNFILE_PRESELECTIONFILE}
 
-        for line in ${preselection_file_items[@]}; do
+        for line in "${preselection_file_items[@]}"; do
 
-                cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
+                cmnt=$(echo "$line" | awk '{ print substr($1,0,1) }') #check whether step commented
 
                 if [ "$cmnt" == "#" ]; then
 
@@ -59,12 +58,13 @@ function runModule() {
                 elif [ "$cmnt" == "" ]; then
 
                         info_log "$FUNCNAME:Skipping empty line\n"
+                        continue
 
                 else
-
+                        
                         step_name="${PROJ_BASH_IMPORT_DIR}/${line}"
 
-                        if ! test_path ${step_name}; then
+                        if ! test_path "${step_name}"; then
                                 return 1
                         fi
 
@@ -72,7 +72,7 @@ function runModule() {
 
                         subprocess_return_code=$?
 
-                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit 1
+                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit ${subprocess_return_code}
 
                         [ ${subprocess_return_code} -eq 0 ] && info_log "$FUNCNAME: ${step_name} completed successfully with ${subprocess_return_code}"
 

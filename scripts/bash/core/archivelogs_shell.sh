@@ -1,4 +1,6 @@
 #!/bin/bash
+set -o errtrace
+set -o functrace
 
 #Set Global Variables
 source ${PROCESS_SHELL_TEMPLATE_SCRIPT}
@@ -89,7 +91,8 @@ function process_archivelogs() {
 	
 	for activelogdir in "${dir_contents[@]}"; do
 
-		logdir=${LOG_PARENT_DIR}/"$(basename ${activelogdir})"
+		#logdir=${LOG_PARENT_DIR}/"$(basename ${activelogdir})"
+		logdir="${activelogdir}"
 
 		info_log "$FUNCNAME: current logdir for archival is : ${logdir}"
 
@@ -99,22 +102,24 @@ function process_archivelogs() {
 
 			logfiles=($(ls ${logdir}))
 
+			[ "${#logfiles[@]}" -eq 0 ] && info_log "$FUNCNAME: ${logdir} empty skipping the archival process " && continue
+
 			for logfile in "${logfiles[@]}"; do
 
-				info_log "$FUNCNAME: $(basename ${logfile}) is the file name"
+				info_log "$FUNCNAME: ${logfile} is the file name"
 
-				if [ "$(basename ${logfile})" == "oflnsel_import_trig_$(date +"%Y_%m_%d").log" ]; then
+				if [ " ${logfile} " == "${FUNCTIONAL_GROUP}_import_trig_$(date +"%Y_%m_%d").log" ]; then
 
-					info_log "$FUNCNAME: Current Day $logfile skipping the archival to log folder: ${archivelogdir}"
+					info_log "$FUNCNAME: Current Day ${logdir} skipping the archival to log folder: ${archivelogdir}"
 
 				else
 
-					info_log "$FUNCNAME: moving $logfile to archive log folder: ${archivelogdir}"
+					info_log "$FUNCNAME: moving ${logdir} to archive log folder: ${archivelogdir}"
 
 					move_item "${logdir}/${logfile}" "${archivelogdir}"
 
 					ret_code_move_item=$?
-
+					
 					[ $ret_code_move_item -ne 0 ] && return 1
 
 				fi
@@ -131,5 +136,6 @@ function process_archivelogs() {
 		fi
 
 	done
+	
 	return 0
 }

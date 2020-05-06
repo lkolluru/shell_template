@@ -4,12 +4,13 @@
 set -uo pipefail
 set -E
 set -o errtrace
+set -o functrace
 #######################################
 # OFLNSEL WORKFLOW RE_DIRECT Repository Module
 # Process Modules:
-#   main -- evaluate the steps files and execute the steps
-#   test1 -- evaluate all the previous executions and archive the required logs
-#   test2 -- evaluate all the previous executions and archive the required logs
+#   main  -- Configurations for currnet week workflows
+#   test1 -- Configurations for Future week workflows
+#   test2 -- Configurations for Future week workflows
 #######################################
 case ${2} in
 main)
@@ -51,7 +52,7 @@ function runModule() {
 
         mapfile -t compute_file_items <${PROJ_STEPS_RUNFILE_COMPUTE}
 
-        for line in ${compute_file_items[@]}; do
+        for line in "${compute_file_items[@]}"; do
 
                 cmnt=$(echo $line | awk '{ print substr($1,0,1) }') #check whether step commented
 
@@ -66,13 +67,13 @@ function runModule() {
 
                 else
 
-                        step_name="${PROJ_BASH_IMPORT_DIR}/${line}"
+                        step_name="${PROJ_BASH_COMPUTE_DIR}/${line}"
 
                         if ! test_path ${step_name}; then
                                 return 1
                         fi
 
-                        bash "${PROJ_BASH_IMPORT_DIR}/${line}"
+                        bash "${PROJ_BASH_COMPUTE_DIR}/${line}"
 
                         subprocess_return_code=$?
 
@@ -118,11 +119,17 @@ function preproces() {
 
         run_archive_logs
 
-        preprocess_return_code=$?
+        preproces_rc=$?
 
-        [ $preprocess_return_code -ne 0 ] && fatal_log "$FUNCNAME:unable to complete successfully failing the process" && exit ${preprocess_return_code}
+        if [ $preproces_rc -ne 0 ]; then
 
-        return ${preprocess_return_code}
+                fatal_log "$FUNCNAME:unable to complete successfully failing the process failing with $preproces_rc"
+                set -e
+                exit 254
+
+        else
+                return ${preproces_rc}
+        fi
 
 }
 
@@ -134,20 +141,26 @@ function main() {
 
         runModule
 
-        main_return_code=$?
+        main_rc=$?
 
-        [ $main_return_code -ne 0 ] && fatal_log "$FUNCNAME:unable to complete successfully failing the process" && exit ${main_return_code}
+        if [ $main_rc -ne 0 ]; then
 
-        return ${main_return_code}
+                fatal_log "$FUNCNAME:unable to complete successfully failing the process"
+                exit ${main_rc}
 
+        else
+                return ${main_rc}
+        fi
 }
 
 #Main Program
 
-prepare_archivelog_file
+{ ## Code Initalization and Cleanup Logging Process
+        prepare_archivelog_file
+        preproces 2>&1 | tee -a ${archivelog_file}
+}
 
-prepare_log_file
-
-preproces 2>&1 | tee -a ${archivelog_file}
-
-main 2>&1 | tee -a ${log_file}
+{ ## OFLNSEL Main Compute Process
+        prepare_log_file
+        main 2>&1 | tee -a ${log_file}
+}

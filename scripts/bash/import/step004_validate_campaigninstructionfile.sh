@@ -6,8 +6,8 @@ set -E
 set -o errtrace
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
 source ${FILE_HANDLER_SCRIPT}
-trap clean_up SIGINT SIGHUP SIGTERM EXIT
 trap 'gen_step_error ${LINENO} ${?}' ERR
+trap clean_up SIGINT SIGHUP SIGTERM EXIT
 
 #Functions
 
@@ -54,6 +54,7 @@ function check_file_size() {
 
 function check_file_date() {
 
+    ## to be depricated
     wk_date=$(date +"%Y%m%d" -d "last saturday")
     current_campaigninstruction_file=$(find ${CAMPAIGNINSTRUCTION_FILE_DIR} -type f -name '*_N.gz')
     original_zip_file_name=$(basename ${current_campaigninstruction_file})
@@ -72,6 +73,8 @@ function check_file_date() {
 
 function main() {
 
+    info_log "$FUNCNAME:Command executed: ${0}"
+
     #move_triggerfiles
     if ! check_file_name; then
         exit 200
@@ -84,7 +87,5 @@ function main() {
 
 #Setup new or edit log file.
 prepare_log_file
-
-info_log "Command executed: ${0}" 2>&1 | tee -a ${step_log_file}
 
 main 2>&1 | tee -a ${step_log_file}

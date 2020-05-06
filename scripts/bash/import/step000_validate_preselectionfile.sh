@@ -6,8 +6,8 @@ set -E
 set -o errtrace
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
 source ${FILE_HANDLER_SCRIPT}
-trap clean_up SIGINT SIGHUP SIGTERM EXIT
 trap 'gen_step_error ${LINENO} ${?}' ERR
+trap clean_up SIGINT SIGHUP SIGTERM EXIT
 
 #Functions
 
@@ -53,12 +53,12 @@ function check_file_size() {
 
 function check_file_date() {
 
+    ## to be depricated
     wk_date=$(date +"%Y%m%d" -d "last saturday")
     current_preselection_file=$(find ${PRESELECTION_FILE_DIR} -type f -name '*_N.tar.gz')
     original_zip_file_name=$(basename ${current_preselection_file})
     processed_zip_filename=$(echo ${original_zip_file_name} | cut -f2 -d'_')
     preselection_file_date="$(echo ${processed_zip_filename} | awk '{ print substr($0,length($0) 1,8) }')"
-
 
     if [ $preselection_file_date -gt $wk_date ]; then
         info_log "$ENV_FLAG_UPPER:OFLNSEL-New Preselection File received for date $preselection_file_date."
@@ -69,6 +69,8 @@ function check_file_date() {
 }
 
 function main() {
+
+    info_log "$FUNCNAME:Command executed: ${0}"
 
     if ! check_file_name; then
 
@@ -84,7 +86,5 @@ function main() {
 
 #Setup new or edit log file.
 prepare_log_file
-
-info_log "Command executed: ${0}" 2>&1 | tee -a ${step_log_file}
 
 main 2>&1 | tee -a ${step_log_file}
