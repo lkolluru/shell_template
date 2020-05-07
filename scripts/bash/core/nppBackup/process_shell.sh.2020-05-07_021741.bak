@@ -260,7 +260,7 @@ function gen_prss_error() {
         local frame=0 line func source n=0
         while caller "$frame"; do
                 ((frame++))
-        done | while read -r line func source; do
+        done | while read line func source; do
                 ((n++ == 0)) && {
                         printf 'Encountered a fatal error\n'
                 }
