@@ -57,7 +57,7 @@ function post_process_validations() {
 
         [ "${#validation_file_parser[@]}" -ne 1 ] && error_log "$FUNCNAME:control file needs to have only a single record" && return 1
 
-        IFS=',' read -ra validation_file_value_array <<<$(echo "${validation_file_parser[0]}")
+        IFS=',' read -ra validation_file_value_array <<<"$(echo "${validation_file_parser[0]}")"
 
         functional_group=${validation_file_value_array[0]}
 
