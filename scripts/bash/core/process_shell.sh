@@ -159,8 +159,8 @@ function send_success_email() {
         success_email_message="$(basename ${0}) of ${email_subject_area} completed successfully at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${log_directory}."
         process_shell_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}| sed 's/\.sh//g')
         #attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
-        attach_file=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.log | awk -F' ' '{ print $9 }')
-        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.txt | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr ${log_directory}/* | grep "${process_shell_name}*.log" | awk -F' ' '{ print $9 }')
+        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep "${process_shell_name}*.txt" | awk -F' ' '{ print $9 }')
         mail -s "${success_email_subject}" -a ${log_directory}/${attach_file} -a  ${log_directory}/${attach_step_exceution_status} ${success_to_email} <<<"${success_email_message}"
         #mail -s "${success_email_subject}" ${success_to_email} <<<"${success_email_message}"
 
@@ -172,8 +172,8 @@ function send_mainscript_failure_email() {
         error_email_subject="FAILED in ${email_subject_env}:${email_subject_area}'s Script - $(basename ${0}) at $(date +"%Y_%m_%d_%H_%M_%S")."
         process_shell_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}| sed 's/\.sh//g')
         #attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
-        attach_file=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.log | awk -F' ' '{ print $9 }')
-        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.txt | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr ${log_directory}/* | grep "${process_shell_name}*.log" | awk -F' ' '{ print $9 }')
+        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep "${process_shell_name}*.txt" | awk -F' ' '{ print $9 }')
         #echo ${attach_step_exceution_status}
         #last_line=$(cat ${log_directory}/$attach_file | tail -1)
         #mail -s "${error_email_subject}" -a ${log_directory}/${attach_file} -a "${attach_step_exceution_status}" ${failure_to_email} <<<"${error_email_message}"
@@ -188,8 +188,8 @@ function send_warning_email() {
         success_email_message="$(basename ${0}) of ${email_subject_area} completed with warning at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${log_directory}."
         process_shell_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}| sed 's/\.sh//g')
         #attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
-        attach_file=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.log | awk -F' ' '{ print $9 }')
-        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.txt | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr ${log_directory}/* | grep "${process_shell_name}*.log" | awk -F' ' '{ print $9 }')
+        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep "${process_shell_name}*.txt" | awk -F' ' '{ print $9 }')
         mail -s "${success_email_subject}" ${success_to_email} <<<"${success_email_message}"
         #-a  ${log_directory}/${attach_file} \
         #-a  ${attach_step_exceution_status} \
