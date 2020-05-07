@@ -2,7 +2,7 @@
 
 source ${STEP_SHELL_TEMPLATE_SCRIPT}
 source ${FILE_HANDLER_SCRIPT}
-set -o errtrace
+
 #######################################
 # Cloud Storage Archival Repository Functions Repository Module
 # Repostiory archival Modules:
@@ -181,6 +181,8 @@ function gcp_consolidated_archive_push() {
 
 		if ! copy_hdfs_cloud ${SRC_ARCH_DIR}; then
 			return 1
+		else
+			return 0
 		fi
 
 	fi

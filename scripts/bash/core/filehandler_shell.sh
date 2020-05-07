@@ -1,7 +1,4 @@
 #!/bin/bash
-set -o errtrace
-set -o functrace
-
 ######################################
 # Linux file operations module: EVALUATION FUNCTIONS
 #   test_content
@@ -432,9 +429,8 @@ function rename_ftpitem() {
                 $6=ftpservername
 
         '
-        #objLocationTrgt=${FILE_ROOT_DIR}/"$modelname"/compressfilestozip/
-        #zipFileName="$modelname"_Scores_Details_"$wkdt"T.zip
-        #zipFileNameN="$modelname"_Scores_Details_"$wkdt"N.zip
+        [ $# -ne 6 ] && error_log "$FUNCNAME: at least 6 argument is required" && return 1
+
         if ! test_path ${1}; then
                 return 1
         fi
@@ -445,8 +441,8 @@ function rename_ftpitem() {
                 return 1
         fi
 
-        sshpass -p ${5} sftp -b -${6} <<EOF 2>&1 | tee -a ${step_log_file}
-                cd ${2} 
+        sshpass -p "${5}" sftp "${6}" <<EOF 2>&1 | tee -a ${step_log_file}
+                cd /${2} 
                 put ${1}
                 rename ${3} ${4}
 EOF

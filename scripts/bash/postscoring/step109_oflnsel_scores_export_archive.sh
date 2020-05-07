@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 #Set Global Variables
 set -uo pipefail
@@ -14,15 +14,15 @@ trap 'gen_step_error ${LINENO} ${?}' ERR
 
 function runArchive() {
 
-   if ! test_path ${ARCHIVE_TABLES_FILE}; then
+   if ! test_path ${SCORES_EXPORT_ARCHIVE_TABLES_FILE}; then
 
       return 1
 
    fi
 
-   mapfile -t cloud_archive_items <${ARCHIVE_TABLES_FILE}
+   mapfile -t scores_cloud_archive_items <${SCORES_EXPORT_ARCHIVE_TABLES_FILE}
 
-   for cloud_archive_item in ${cloud_archive_items[@]}; do
+   for cloud_archive_item in ${scores_cloud_archive_items[@]}; do
 
       cmnt=$(echo ${cloud_archive_item} | awk '{ print substr($1,0,1) }') #check whether step commented
 
@@ -44,17 +44,11 @@ function runArchive() {
 
          gcp_consolidated_archive_push_ret_code=$?
 
-         if [ $gcp_consolidated_archive_push_ret_code -ne 0 ]; then  
-
-         return 1
-         
-         fi 
+         [ $gcp_consolidated_archive_push_ret_code -ne 0 ] && return 1 || return 0
 
       fi
 
    done
-   
-   return 0 
 
 }
 
@@ -73,8 +67,7 @@ function main() {
    info_log "$FUNCNAME:Command executed: ${0}"
 
    if ! runArchive; then
-      
-      error_log "$FUNCNAME: run archive failed"
+      #todo map exit id to the step id to easily figure out which step failed.
       exit 1
 
    fi

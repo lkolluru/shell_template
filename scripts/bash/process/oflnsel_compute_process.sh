@@ -4,7 +4,6 @@
 set -uo pipefail
 set -E
 set -o errtrace
-set -o functrace
 #######################################
 # OFLNSEL WORKFLOW RE_DIRECT Repository Module
 # Process Modules:
@@ -77,8 +76,8 @@ function runModule() {
 
                         subprocess_return_code=$?
 
-                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit 1
-
+                        [ ${subprocess_return_code} -ne 0 ] && fatal_log "$FUNCNAME: ${step_name} failed with a error code from the step shell with ${subprocess_return_code}" && exit ${subprocess_return_code}
+\
                         [ ${subprocess_return_code} -eq 0 ] && info_log "$FUNCNAME: ${step_name} completed successfully with ${subprocess_return_code}"
 
                         unset step_name
@@ -124,9 +123,7 @@ function preproces() {
         if [ $preproces_rc -ne 0 ]; then
 
                 fatal_log "$FUNCNAME:unable to complete successfully failing the process failing with $preproces_rc"
-                set -e
                 exit 254
-
         else
                 return ${preproces_rc}
         fi
@@ -155,12 +152,10 @@ function main() {
 
 #Main Program
 
-{ ## Code Initalization and Cleanup Logging Process
-        prepare_archivelog_file
-        preproces 2>&1 | tee -a ${archivelog_file}
-}
+## Code Initalization and Cleanup Logging Process
+prepare_archivelog_file
+preproces 2>&1 | tee -a ${archivelog_file}
 
-{ ## OFLNSEL Main Compute Process
-        prepare_log_file
-        main 2>&1 | tee -a ${log_file}
-}
+## OFLNSEL Main Compute Process
+prepare_log_file
+main 2>&1 | tee -a ${log_file}

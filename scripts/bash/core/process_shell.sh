@@ -65,7 +65,7 @@ function fatal_log() {
 function prepare_log_file() {
 
         {
-                log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+                log_file_name=$(basename $BASH_SOURCE | sed 's/\.sh//g') &&
                         log_file=$(append_character "${log_directory}" "/")$(append_character "${log_file_name}" "_")$(date +"%Y_%m_%d").log &&
                         subject_area="${log_subject_area}"
         }
@@ -99,7 +99,7 @@ function prepare_archivelog_file() {
 
         {
                 archivelogdir="/mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/application_logs/calcengine/${ENV_FLAG}/${FUNCTIONAL_GROUP}/archivelogs/archwrkflwlogs" &&
-                        log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+                        log_file_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]} | sed 's/\.sh//g') &&
                         archivelog_file=$(append_character ${archivelogdir} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d_%H_%M_%S").log &&
                         subject_area="${log_subject_area}"
         }
@@ -127,7 +127,7 @@ function prepare_archivelog_file() {
 function prepare_status_file() {
 
         {
-                process_status_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+                process_status_file_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]} | sed 's/\.sh//g') &&
                         export process_status_file="${log_directory}/${process_status_file_name}$(date +"%Y_%m_%d").txt"
         }
 
@@ -157,11 +157,12 @@ function send_success_email() {
 
         success_email_subject="COMPLETED: ${email_subject_env} - $(basename ${0}) of ${email_subject_area}."
         success_email_message="$(basename ${0}) of ${email_subject_area} completed successfully at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${log_directory}."
+        process_shell_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}| sed 's/\.sh//g')
         #attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
-        #attach_file=$(echo ${log_directory}/*$(basename ${0})*/ | sed 's/\.sh//g' | tail -1 | awk -F' ' '{ print $9 }')
-        #attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep '${FUNCTIONAL_GROUP}_status' | tail -1 | awk -F' ' '{ print $9 }')
-        #mail -s "${success_email_subject}" -a ${log_directory}/${attach_file} -a ${attach_step_exceution_status} ${success_to_email} <<<"${success_email_message}"
-        mail -s "${success_email_subject}" ${success_to_email} <<<"${success_email_message}"
+        attach_file=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.log | awk -F' ' '{ print $9 }')
+        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.txt | awk -F' ' '{ print $9 }')
+        mail -s "${success_email_subject}" -a ${log_directory}/${attach_file} -a  ${log_directory}/${attach_step_exceution_status} ${success_to_email} <<<"${success_email_message}"
+        #mail -s "${success_email_subject}" ${success_to_email} <<<"${success_email_message}"
 
 }
 
@@ -169,9 +170,10 @@ function send_mainscript_failure_email() {
 
         error_email_message="Failure of ${email_subject_area}'s Script: '$(basename ${0})'. Attached is the log file. Logs are captured at ${log_directory}."
         error_email_subject="FAILED in ${email_subject_env}:${email_subject_area}'s Script - $(basename ${0}) at $(date +"%Y_%m_%d_%H_%M_%S")."
-
-        #attach_file=$(ls -ltr -t ${log_directory} | grep $(echo $(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
-        #attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep "${FUNCTIONAL_GROUP}_status" | tail -1 | awk -F' ' '{ print $9 }')
+        process_shell_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}| sed 's/\.sh//g')
+        #attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.log | awk -F' ' '{ print $9 }')
+        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.txt | awk -F' ' '{ print $9 }')
         #echo ${attach_step_exceution_status}
         #last_line=$(cat ${log_directory}/$attach_file | tail -1)
         #mail -s "${error_email_subject}" -a ${log_directory}/${attach_file} -a "${attach_step_exceution_status}" ${failure_to_email} <<<"${error_email_message}"
@@ -184,8 +186,10 @@ function send_warning_email() {
         process_file_name=$(echo $(basename ${0}))
         success_email_subject="WARNING: ${email_subject_env} - $(basename ${0}) of ${email_subject_area}."
         success_email_message="$(basename ${0}) of ${email_subject_area} completed with warning at $(date +"%Y_%m_%d_%H_%M_%S"). Logs are at ${log_directory}."
-        #attach_file=$(echo ${log_directory}/*$(basename ${0})*/ | sed 's/\.sh//g' | tail -1 | awk -F' ' '{ print $9 }')
-        #attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep "${status_file}" | tail -1 | awk -F' ' '{ print $9 }')
+        process_shell_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}| sed 's/\.sh//g')
+        #attach_file=$(ls -ltr -t ${log_directory} | grep $($(basename ${0}) | sed 's/\.sh//g') | tail -1 | awk -F' ' '{ print $9 }')
+        attach_file=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.log | awk -F' ' '{ print $9 }')
+        attach_step_exceution_status=$(ls -ltr ${log_directory}/* | grep ${process_shell_name}*.txt | awk -F' ' '{ print $9 }')
         mail -s "${success_email_subject}" ${success_to_email} <<<"${success_email_message}"
         #-a  ${log_directory}/${attach_file} \
         #-a  ${attach_step_exceution_status} \

@@ -1,6 +1,4 @@
 #!/bin/bash
-set -o errtrace
-set -o functrace
 
 #Set Global Variables
 source ${PROCESS_SHELL_TEMPLATE_SCRIPT}

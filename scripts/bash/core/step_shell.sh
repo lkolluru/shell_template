@@ -98,7 +98,7 @@ function gen_step_error() {
 function prepare_log_file() {
 
 	{
-		log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+		log_file_name=$( basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]} | sed 's/\.sh//g') &&
 			step_log_file=$(append_character ${log_directory} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d").log &&
 			subject_area="${log_subject_area}"
 	}
@@ -136,7 +136,7 @@ function prepare_log_file() {
 function prepare_shell_jar_log_file() {
 
 	{
-		log_file_name=$(echo $(basename ${0}) | sed 's/\.sh//g') &&
+		log_file_name=$(basename ${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]} | sed 's/\.sh//g') &&
 			shell_jar_log_file=$(append_character ${log_directory} "/")$(append_character ${log_file_name} "_")$(date +"%Y_%m_%d").log &&
 			subject_area="${log_file_name}"
 	}
@@ -247,6 +247,40 @@ function beehive() {
 
 }
 
+function beehivecounts() {
+
+	command -v /opt/mapr/hive/hive-2.3/bin/beeline >/dev/null 2>&1 || {
+		error_log "$FUNCNAME: beeline not available"
+		exit 254
+	}
+
+	[ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && return 1
+
+	local hive_query="${1};"
+	#local opts="${2:-}"
+
+	#info_log "$FUNCNAME:query executing is ${hive_query}"
+	#info_log "$FUNCNAME:opts for the query are ${opts}"
+
+	/opt/mapr/hive/hive-2.3/bin/beeline \
+		--fastConnect=true \
+		--silent=true \
+		--showHeader=false \
+		--outputformat=csv2 \
+		-u ${jdbc_url} \
+		-n ${service_account} \
+		-w ${passowrd_file} \
+		-e "${hive_query}"  
+
+	beehive_rc=$?
+
+	if [ $beehive_rc -ne 0 ]; then
+		error_log "$FUNCNAME:hive query execution failed with exit code" && return 1
+	fi
+	#info_log "$FUNCNAME: Sqoop query :${hive_query} is complete" && return 0
+
+}
+
 function beehivecsv() {
 
 	command -v /opt/mapr/hive/hive-2.3/bin/beeline >/dev/null 2>&1 || {
@@ -261,8 +295,8 @@ function beehivecsv() {
 
 	info_log "$FUNCNAME:query exporting is ${hive_query}"
 
-	/opt/mapr/hive/hive-2.3/bin/beeline --fastConnect=true --silent=true --showHeader=true --outputformat=csv2 --verbose=false -u ${jdbc_url} -n ${service_account} -w ${passowrd_file} -e "${hive_query}" >> "${hive_csv_destination}"
-	
+	/opt/mapr/hive/hive-2.3/bin/beeline --fastConnect=true --silent=true --showHeader=true --outputformat=csv2 --verbose=false -u ${jdbc_url} -n ${service_account} -w ${passowrd_file} -e "${hive_query}" >>"${hive_csv_destination}"
+
 	beehivecsv_rc=$?
 
 	[ $beehivecsv_rc -ne 0 ] && error_log "$FUNCNAME:hive query execution failed with exit code" && return 1
@@ -285,8 +319,8 @@ function beehivecsvnoheader() {
 
 	info_log "$FUNCNAME:query exporting is ${hive_query}"
 
-	/opt/mapr/hive/hive-2.3/bin/beeline --fastConnect=true --silent=true --showHeader=false --outputformat=csv2 --verbose=false -u ${jdbc_url} -n ${service_account} -w ${passowrd_file} -e "${hive_query}" >> "${hive_csv_destination}"
-	
+	/opt/mapr/hive/hive-2.3/bin/beeline --fastConnect=true --silent=true --showHeader=false --outputformat=csv2 --verbose=false -u ${jdbc_url} -n ${service_account} -w ${passowrd_file} -e "${hive_query}" >>"${hive_csv_destination}"
+
 	beehivecsvnoheader_rc=$?
 
 	[ $beehivecsvnoheader_rc -ne 0 ] && error_log "$FUNCNAME:hive query execution failed with exit code" && return 1

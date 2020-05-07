@@ -20,11 +20,11 @@ function load_control_table() {
             model_count_logging_file="${MODEL_COUNTS_LOG_FILE}"
     }
     load_control_table_rc=$?
-    [ load_control_table_rc -ne 0 ] && error_log "$FUNCNAME: error initalizing the vars" && return 1
-    
-    model_count=$(beehive "select count(*) from ${MODEL_COUNT_MOD321_TABLE}")
+    [ $load_control_table_rc -ne 0 ] && error_log "$FUNCNAME: error initalizing the vars" && return 1
+
+    model_count=$(beehivecounts "select count(*) from ${MODEL_COUNT_MOD321_TABLE}")
     evaluation_ret_code=$?
-    [ evaluation_ret_code -ne 0 ] && error_log "$FUNCNAME: error executing the beehive command" && return 1
+    [ $evaluation_ret_code -ne 0 ] && error_log "$FUNCNAME: error executing the beehive command" && return 1
 
     if [ "${model_count}" != "" ] && [ "${model_count}" != "0" ]; then
 

@@ -62,7 +62,7 @@ function post_process_validations() {
 
     exchange_table_query="select count(1) cnt from dev_sa_calc_engine_exchange.oflnsel_hdl_campaigninstructionfile;"
 
-    _hive_restults=$(beehive "${exchange_table_query}")
+    _hive_restults=$(beehivecounts "${exchange_table_query}")
 
     return_code=$?
 
