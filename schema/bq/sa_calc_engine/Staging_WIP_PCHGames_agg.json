@@ -1,0 +1,10 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "GAMES_BUSUNIT41_DAY7", 
+    "type": "INTEGER"
+  }
+]

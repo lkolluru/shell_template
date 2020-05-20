@@ -1,0 +1,34 @@
+[
+  {
+    "name": "globalmembertoken", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "searchdatetime", 
+    "type": "TIMESTAMP"
+  }, 
+  {
+    "name": "DeviceType", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "EventType", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "blingoid", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ClickDate", 
+    "type": "TIMESTAMP"
+  }, 
+  {
+    "name": "Param_SID", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "InfoSP_cookieID", 
+    "type": "STRING"
+  }
+]

@@ -1,9 +1,0 @@
-Local Repo Setup
-
--- runners would be setup already on the git side and the process would need to be configures once the repository is cloned. 
--- config repos are orphan branches without any source code
--- .gityml file should not be removed when commiting the code or the pipeline would fail. 
--- expectation is that the development would be done on the local branches and it would be only merged into the dev branch once the code is ready to be tested on the cluster. 
--- no service account would be avaialble need to script out the schemas and the locations. 
-
-git clone git@git.prod.pch.com:CustDataAnalytics/cmpgn.git    --Local code repository locations. 

@@ -26,7 +26,7 @@ stages:
 #######################################
 .git_pipeline_deployment_variables_base:
  variables: &deployment_variables
-  CODE_FG: "oflnsel"
+  CODE_FG: "onb"
   DEPLOYMENT_SCRIPT: "${DEPLOYMENT_SCRIPT_CODE_ROOT}${WRKFLW_ROOT}/${CI_ENVIRONMENT_URL}${SCRIPTS_ROOT}${DEPLOYMENT_SCRIPT_NAME}"
 #######################################
 # Git Pipeline Workflow Execution Parameterized Job Modules

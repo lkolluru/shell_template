@@ -1,8 +1,8 @@
 #!/bin/bash
 
-source /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/${1}/oflnsel/config/oflnsel_env.sh
-source /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/${1}/oflnsel/scripts/bash/core/step_shell.sh
-source /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/${1}/oflnsel/scripts/bash/core/filehandler_shell.sh
+source /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/${1}/onb/config/onb_env.sh
+source /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/${1}/onb/scripts/bash/core/step_shell.sh
+source /mapr/JMAPRCLUP01.CLASSIC.PCHAD.COM/codebase/calcengine/${1}/onb/scripts/bash/core/filehandler_shell.sh
 set -euo pipefail
 set -o errtrace
 trap 'gen_shell_jar_error ${LINENO} ${?}' ERR
@@ -24,7 +24,7 @@ function cloud_exportdirectory_load() {
 
     info_log "$FUNCNAME: CLOUD STORAGE DIRECTORY BEING EVALUATED: is ${EVAL_DIR}"
 
-    test_directory ${EVAL_DIR}
+    test_directory_cloud ${EVAL_DIR}
 
     local FILE_COUNT=$(hadoop fs -count ${EVAL_DIR} | awk '{ print $2 }')
 

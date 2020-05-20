@@ -1,0 +1,86 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "ECOMM_EMAIL_CLICK_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ECOMM_EMAIL_CLICK_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_CLICK_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_CLICK_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_CLICK_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_DESK_CLICK_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_DESK_CLICK_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_DESK_CLICK_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_DESK_CLICK_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_MOBL_OPEN_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_TABL_OPEN_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_OPEN_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_OPEN_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_OPEN_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_OPEN_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_OPEN_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_UNSUB_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_UNSUB_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_UNDEL_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_UNDEL_3MON", 
+    "type": "INTEGER"
+  }
+]

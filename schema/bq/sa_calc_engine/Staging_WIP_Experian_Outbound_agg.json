@@ -1,0 +1,22 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "EMAIL_SEND_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_SEND_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_SEND_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "EMAIL_SEND_DAY7", 
+    "type": "INTEGER"
+  }
+]

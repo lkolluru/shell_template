@@ -1,0 +1,36 @@
+{
+  "type" : "record",
+  "name" : "onb_pte_historical_scores_ltst_avro_temp",
+  "namespace" : "dev_im_calc_engine_exchange",
+  "fields" : [ {
+    "name" : "matchcode_sha256",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 255
+    } ],
+    "default" : null
+  }, {
+    "name" : "score",
+    "type" : [ "null", "double" ],
+    "default" : null
+  }, {
+    "name" : "rank",
+    "type" : [ "null", "double" ],
+    "default" : null
+  }, {
+    "name" : "rundate_import",
+    "type" : [ "null", {
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    } ],
+    "default" : null
+  }, {
+    "name" : "rundate_sas_process",
+    "type" : [ "null", {
+      "type" : "int",
+      "logicalType" : "date"
+    } ],
+    "default" : null
+  } ]
+}

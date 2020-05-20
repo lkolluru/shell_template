@@ -1,0 +1,14 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "Age", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DateCreated", 
+    "type": "TIMESTAMP"
+  }
+]

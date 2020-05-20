@@ -1,0 +1,22 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "IW_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "IW_BUSUNIT52_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "IW_BUSUNIT7_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "IW_BUSUNIT7_2YR", 
+    "type": "INTEGER"
+  }
+]

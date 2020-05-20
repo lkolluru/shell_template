@@ -1,0 +1,30 @@
+[
+  {
+    "name": "SubscriberID", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "AddressID", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "StateProvince", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "APT_IND", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Gender", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "Title", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "LastActiveChgDate", 
+    "type": "TIMESTAMP"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "FP_SEARCH_BLG6_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "FP_SEARCH_BLG7_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "FP_SEARCH_BLG7_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "SEARCH_DESK_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "SEARCH_DESK_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "SEARCH_NAV_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "SEARCH_NAV_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "SEARCH_NAV_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "SEARCH_TABL_DAY14", 
+    "type": "INTEGER"
+  }
+]

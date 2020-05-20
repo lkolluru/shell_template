@@ -1,0 +1,13 @@
+{
+  "type" : "record",
+  "name" : "onb_ptp_historical_min_rundate_sas_process_avro_temp",
+  "namespace" : "dev_im_calc_engine_exchange",
+  "fields" : [ {
+    "name" : "min_rundate_sas_process",
+    "type" : [ "null", {
+      "type" : "int",
+      "logicalType" : "date"
+    } ],
+    "default" : null
+  } ]
+}

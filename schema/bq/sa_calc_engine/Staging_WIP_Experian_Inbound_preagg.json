@@ -1,0 +1,30 @@
+[
+  {
+    "name": "rundate", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "globalmembertoken", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "emaileventdatetime", 
+    "type": "TIMESTAMP"
+  }, 
+  {
+    "name": "eventcomparedate", 
+    "type": "DATE"
+  }, 
+  {
+    "name": "eventtype", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "device_category", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "mailingbrand", 
+    "type": "STRING"
+  }
+]

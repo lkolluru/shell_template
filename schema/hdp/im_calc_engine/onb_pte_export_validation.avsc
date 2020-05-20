@@ -1,0 +1,10 @@
+{
+  "type" : "record",
+  "name" : "onb_pte_export_validation_avro_temp",
+  "namespace" : "dev_im_calc_engine",
+  "fields" : [ {
+    "name" : "query_message",
+    "type" : [ "null", "string" ],
+    "default" : null
+  } ]
+}

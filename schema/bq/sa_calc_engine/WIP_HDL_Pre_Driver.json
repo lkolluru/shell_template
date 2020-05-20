@@ -1,0 +1,58 @@
+[
+  {
+    "name": "SubscriberID", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "GlobalMemberToken", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "EmailDomain", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "DateCreated", 
+    "type": "TIMESTAMP"
+  }, 
+  {
+    "name": "IsPCHBuyerScorePresent", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_730", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_365", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_180", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_90", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Email_Create_Days_Flag_7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "Rank_EmailCreateDate", 
+    "type": "INTEGER"
+  }
+]

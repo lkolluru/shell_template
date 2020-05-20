@@ -1,0 +1,78 @@
+[
+  {
+    "name": "ShopperSubscriptionHistoryID", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "GlobalMemberToken", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "SubscriberID", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "SubscriptionCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "AccountStatusCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "DateModified", 
+    "type": "TIMESTAMP"
+  }, 
+  {
+    "name": "UserAgentID", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "TrackingCodeID", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "BaseCampaignType", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "MediaChannel", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "PartnerType", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "Partner", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "TrackingSourceName", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "DeviceType", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "BrowserName", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "DeviceName", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "DisplayHeightPixel", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "DisplayWidthPixel", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "OperatingSystemName", 
+    "type": "STRING"
+  }
+]

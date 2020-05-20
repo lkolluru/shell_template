@@ -1,0 +1,418 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "REG_SUB_ID_108_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SUB_ID_11_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_3_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_3_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_3_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_18_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_18_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_2_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_2_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_2_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_2_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_2_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_33_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_4_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_4_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACCOUNTSTATUS_4_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_BIGGER_FASTER__BC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_CLK1_BC_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACQ_BC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACQ_BC_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_CLK1_BC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_CROSS_PROMT_BC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_CROSS_PROMT_BC_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PORTAL_BC_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_BIGGER_FASTER_BC__1Yr", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PORTAL_BC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_EDGE_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_FIREFOX_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_FIREFOX_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SAFARI_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SAFARI_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_DESK_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_MICROSOFT_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_MOTOROLA_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_MOTOROLA_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_MOTOROLA_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SAMSUNG_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SAMSUNG_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SAMSUNG_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SAMSUNG_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_HEIGHT_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_HEIGHT_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WIDTH_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WIDTH_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WIDTH_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WIDTH_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WIDTH_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_AFFILIATE_MC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_AFFILIATE_MC_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_AFFILIATE_MC_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_AFFILIATE_MC_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_AFFILIATE_MC_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_CONTENT_MC_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_CONTENT_MC_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_CONTENT_MC_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_EMAIL_MC_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_EMAIL_MC_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_POSTCARD_MC_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_POSTCARD_MC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_POSTCARD_MC_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_POSTCARD_MC_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SEARCH_MC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_SOCIAL_MC_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ANDROID_OS_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ANDROID_OS_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ANDROID_OS_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ANDROID_OS_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ANDROID_OS_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ANDROID_OS_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ANDROID_OS_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_OS_X_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_OS_X_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_OS_X_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WINDOWS_OS_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WINDOWS_OS_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_GOOGLE_POSTCARDS_PA_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_KEONO_PA_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_LIQUIDWIRELESS_PA_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_LIQUIDWIRELESS_PA_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_LIVEINTENT_PA_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_NANIGANS_PA_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_NANIGANS_PA_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PCH_PA_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_TABOOLA_PA_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_TABOOLA_PA_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ZEETO_PA_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ZEETO_PA_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PCH_LOTTO_PA_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PCH_LOTTO_PA_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_DIRECT_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_DIRECT_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_LINKOUT_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_LINKOUT_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_PC_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_PC_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_PC_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_PT_RON_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_DAYTIME_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_NIGHTTIME_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_WEEKEND_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_MAIN_PATH_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_MAIN_PATH_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "REG_ACQUISITION_2YR", 
+    "type": "INTEGER"
+  }
+]

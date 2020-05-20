@@ -1,0 +1,118 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "IsPCHBuyerScorePresent", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DateCreated", 
+    "type": "TIMESTAMP"
+  }, 
+  {
+    "name": "EmailDomain", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "DOMAIN_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_BELLSOUTH_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_BELLSOUTH_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_BELLSOUTH_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_CHARTER_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_COMCAST_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_COMCAST_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_COX_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_GMAIL_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_GMAIL_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_GMAIL_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_ICLOUD_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_ICLOUD_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_ICLOUD_6MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_MSN_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_OUTLOOK_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_SBCGLOBAL_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_SBCGLOBAL_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_VERIZON_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_VERIZON_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_YAHOO_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_YMAIL_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "DOMAIN_YMAIL_2YR", 
+    "type": "INTEGER"
+  }
+]

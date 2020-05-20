@@ -1,0 +1,30 @@
+[
+  {
+    "name": "SubscriberId", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "GlobalMemberToken", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "MatchCode_SHA256", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "IsPCHBuyerScorePresent", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "RunDate", 
+    "type": "DATE"
+  }, 
+  {
+    "name": "DateCreated", 
+    "type": "TIMESTAMP"
+  }
+]

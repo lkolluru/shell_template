@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #Set Global Variables
-source ${PROCESS_SHELL_TEMPLATE_SCRIPT}
-source ${FILE_HANDLER_SCRIPT}
+source "${PROCESS_SHELL_TEMPLATE_SCRIPT}"
+source "${FILE_HANDLER_SCRIPT}"
 #Functions
 
 #######################################
@@ -15,9 +15,9 @@ source ${FILE_HANDLER_SCRIPT}
 #######################################
 function eval_directory() {
 
-	[ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && return 1
+	[ $# -eq 0 ] && error_log "${FUNCNAME[0]}: at least one argument is required" && return 1
 
-	if ! test_directory ${1}; then
+	if ! test_directory "${1}"; then
 
 		return 1
 
@@ -26,11 +26,11 @@ function eval_directory() {
 
 function eval_archivedirectory() {
 
-	[ $# -eq 0 ] && error_log "$FUNCNAME: at least one argument is required" && return 1
+	[ $# -eq 0 ] && error_log "${FUNCNAME[0]}: at least one argument is required" && return 1
 
 	ARCHIVE_LOG_DIR="${1}"
 
-	if ! test_directory ${1}; then
+	if ! test_directory "${1}"; then
 
 		return 1
 
@@ -40,15 +40,15 @@ function eval_archivedirectory() {
 
 	info_log "TODAY_ARCHIVE_DIR: is ${TODAY_ARCHIVE_DIR}"
 
-	if [ -d ${TODAY_ARCHIVE_DIR} ]; then
+	if [ -d "${TODAY_ARCHIVE_DIR}" ]; then
 
-		info_log "$FUNCNAME:${TODAY_ARCHIVE_DIR} is present for the rundate proceeding with the archival process"
+		info_log "${FUNCNAME[0]}:${TODAY_ARCHIVE_DIR} is present for the rundate proceeding with the archival process"
 
 	else
 
-		info_log "$FUNCNAME:${TODAY_ARCHIVE_DIR} is not present creating the directory for the rundate"
+		info_log "${FUNCNAME[0]}:${TODAY_ARCHIVE_DIR} is not present creating the directory for the rundate"
 
-		mkdir ${TODAY_ARCHIVE_DIR}
+		mkdir "${TODAY_ARCHIVE_DIR}"
 
 		ret_code_eval_archivedirectory=$?
 
@@ -62,57 +62,61 @@ function eval_archivedirectory() {
 
 function process_archivelogs() {
 
-	[ $# -ne 2 ] && error_log "$FUNCNAME: at least one argument is required" && return 1
+	[ $# -ne 2 ] && error_log "${FUNCNAME[0]}: at least one argument is required" && return 1
 
 	LOG_PARENT_DIR="${1}"
 
 	ARCHIVE_PARENT_DIR="${2}"
 
-	info_log "$FUNCNAME: parent folder is LOG_PARENT_DIR: ${LOG_PARENT_DIR}"
+	info_log "${FUNCNAME[0]}: parent folder is LOG_PARENT_DIR: ${LOG_PARENT_DIR}"
 
-	info_log "$FUNCNAME: parent folder is ARCHIVE_PARENT_DIR : ${ARCHIVE_PARENT_DIR}"
+	info_log "${FUNCNAME[0]}: parent folder is ARCHIVE_PARENT_DIR : ${ARCHIVE_PARENT_DIR}"
 
-	if ! test_directory ${LOG_PARENT_DIR}; then
+	if ! test_directory "${LOG_PARENT_DIR}"; then
 
 		return 1
 	fi
 
-	if ! test_directory ${ARCHIVE_PARENT_DIR}; then
+	if ! test_directory "${ARCHIVE_PARENT_DIR}"; then
 
 		return 1
 
 	fi
 
-	info_log "$FUNCNAME: looping folders started in : ${LOG_PARENT_DIR}"
+	info_log "${FUNCNAME[0]}: looping folders started in : ${LOG_PARENT_DIR}"
 
-	dir_contents=($(ls -d ${LOG_PARENT_DIR}/*))
+	#dir_contents=($(ls -d "${LOG_PARENT_DIR}"/*))
+
+	mapfile -t dir_contents < <(ls -d "${LOG_PARENT_DIR}"/*)
 	
 	for activelogdir in "${dir_contents[@]}"; do
 
 		#logdir=${LOG_PARENT_DIR}/"$(basename ${activelogdir})"
 		logdir="${activelogdir}"
 
-		info_log "$FUNCNAME: current logdir for archival is : ${logdir}"
+		info_log "${FUNCNAME[0]}: current logdir for archival is : ${logdir}"
 
 		archivelogdir=${ARCHIVE_PARENT_DIR}/$(date +"%Y%m%d")
 
-		if [ -d ${logdir} ]; then
+		if [ -d "${logdir}" ]; then
 
-			logfiles=($(ls ${logdir}))
+			#logfiles=($(ls "${logdir}"))
 
-			[ "${#logfiles[@]}" -eq 0 ] && info_log "$FUNCNAME: ${logdir} empty skipping the archival process " && continue
+			mapfile -t logfiles < <(ls "${logdir}")
+
+			[ "${#logfiles[@]}" -eq 0 ] && info_log "${FUNCNAME[0]}: ${logdir} empty skipping the archival process " && continue
 
 			for logfile in "${logfiles[@]}"; do
 
-				info_log "$FUNCNAME: ${logfile} is the file name"
+				info_log "${FUNCNAME[0]}: ${logfile} is the file name"
 
-				if [ " ${logfile} " == "${FUNCTIONAL_GROUP}_import_trig_$(date +"%Y_%m_%d").log" ]; then
+				if [ "${logfile}" == "${FUNCTIONAL_GROUP}_import_trig_$(date +"%Y_%m_%d").log" ]; then
 
-					info_log "$FUNCNAME: Current Day ${logdir} skipping the archival to log folder: ${archivelogdir}"
+					info_log "${FUNCNAME[0]}: Current Day ${logdir} skipping the archival to log folder: ${archivelogdir}"
 
 				else
 
-					info_log "$FUNCNAME: moving ${logdir} to archive log folder: ${archivelogdir}"
+					info_log "${FUNCNAME[0]}: moving ${logdir} to archive log folder: ${archivelogdir}"
 
 					move_item "${logdir}/${logfile}" "${archivelogdir}"
 
@@ -127,7 +131,7 @@ function process_archivelogs() {
 			#putup a empty message if its not there future enhancement.
 		else
 
-			error_log "$FUNCNAME: ${logdir} is not a valid directory "
+			error_log "${FUNCNAME[0]}: ${logdir} is not a valid directory "
 
 			return 1
 

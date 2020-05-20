@@ -1,0 +1,22 @@
+[
+  {
+    "name": "rundate", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "id", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "globalmembertoken", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "date_played", 
+    "type": "TIMESTAMP"
+  }, 
+  {
+    "name": "business_unit_id", 
+    "type": "INTEGER"
+  }
+]

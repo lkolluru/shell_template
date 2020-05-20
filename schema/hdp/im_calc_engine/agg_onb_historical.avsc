@@ -1,0 +1,858 @@
+{
+  "type" : "record",
+  "name" : "agg_onb_historical_avro_temp",
+  "namespace" : "dev_im_calc_engine",
+  "fields" : [ {
+    "name" : "matchcode_sha256",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 64
+    } ],
+    "default" : null
+  }, {
+    "name" : "ispchbuyerscorepresent",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ecomm_email_click_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ecomm_email_click_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_click_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_click_rate_1yr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "email_click_rate_day14",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "email_desk_click_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_desk_click_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_desk_click_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_desk_click_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_click_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_click_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_mobl_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_mobl_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_mobl_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_mobl_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_mobl_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_tabl_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_mobl_open_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_open_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_open_rate_2yr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "email_open_rate_3mon",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "email_open_rate_day30",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "email_tabl_open_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_open_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_open_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_open_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_open_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_send_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_send_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_send_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_send_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_unsub_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_unsub_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_undel_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "email_undel_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "games_busunit41_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "iw_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "iw_busunit52_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "iw_busunit7_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "iw_busunit7_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_18_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_18_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_2_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_2_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_2_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_2_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_2_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_33_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_4_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_4_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_4_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_clk1_bc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_cross_promt_bc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_cross_promt_bc_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_portal_bc_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_edge_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_firefox_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_firefox_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_safari_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_safari_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_desk_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_microsoft_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_motorola_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_motorola_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_motorola_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_samsung_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_samsung_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_samsung_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_samsung_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_height_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_height_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_width_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_width_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_width_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_width_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_width_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_affiliate_mc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_affiliate_mc_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_affiliate_mc_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_affiliate_mc_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_affiliate_mc_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_content_mc_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_content_mc_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_content_mc_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_email_mc_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_postcard_mc_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_postcard_mc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_postcard_mc_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_postcard_mc_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_search_mc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_social_mc_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_android_os_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_android_os_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_android_os_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_android_os_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_android_os_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_android_os_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_os_x_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_os_x_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_os_x_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_windows_os_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_windows_os_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_keono_pa_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_liquidwireless_pa_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_liquidwireless_pa_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_liveintent_pa_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_nanigans_pa_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_nanigans_pa_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pch_pa_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_taboola_pa_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_taboola_pa_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_zeeto_pa_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_zeeto_pa_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_direct_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_direct_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_linkout_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_linkout_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_pc_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_pc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_pc_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pt_ron_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_sub_id_108_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_daytime_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_nighttime_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_weekend_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_main_path_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "fp_search_blg6_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "fp_search_blg7_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "fp_search_blg7_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "search_desk_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "search_desk_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "search_nav_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "search_nav_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "search_nav_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "search_tabl_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "age",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "apt_ind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "dob_ind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "stateprovince",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1000
+    } ],
+    "default" : null
+  }, {
+    "name" : "title",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1000
+    } ],
+    "default" : null
+  }, {
+    "name" : "emaildomain",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1000
+    } ],
+    "default" : null
+  }, {
+    "name" : "domain_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_bellsouth_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_bellsouth_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_bellsouth_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_charter_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_comcast_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_comcast_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_cox_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_gmail_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_gmail_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_gmail_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_icloud_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_icloud_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_icloud_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_msn_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_outlook_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_sbcglobal_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_sbcglobal_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_verizon_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_verizon_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_yahoo_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_ymail_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "domain_ymail_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "rundate",
+    "type" : [ "null", {
+      "type" : "int",
+      "logicalType" : "date"
+    } ],
+    "default" : null
+  }, {
+    "name" : "entry_day21",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_bigger_faster__bc_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_portal_bc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_google_postcards_pa_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "gender",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "entry_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_desk_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_desk_3mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_desk_day7",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_3_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_3_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_accountstatus_3_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_acquisition_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_acq_bc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_acq_bc_6mon",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_android_os_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_bigger_faster__bc_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_clk1_bc_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_email_mc_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_main_path_day30",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pch_lotto_pa_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_pch_lotto_pa_2yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "reg_sub_id_11_1yr",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "entry_day14",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "pchcom_tablet_clicks_last30d",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "pchcom_desktop_clicks_last30d",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "pchcom_mobile_clicks_last30d",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "pchcom_lastoptin_devicetype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  } ]
+}

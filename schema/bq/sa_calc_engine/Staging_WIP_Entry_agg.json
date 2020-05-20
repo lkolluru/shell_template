@@ -1,0 +1,66 @@
+[
+  {
+    "name": "MatchCode", 
+    "type": "STRING"
+  }, 
+  {
+    "name": "ENTRY_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_DAY14", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_MOBL_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_MOBL_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_MOBL_DAY30", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_MOBL_DAY21", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_MOBL_DAY7", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_TABL_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_1YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_DESK_2YR", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_DESK_3MON", 
+    "type": "INTEGER"
+  }, 
+  {
+    "name": "ENTRY_DESK_DAY7", 
+    "type": "INTEGER"
+  }
+]
