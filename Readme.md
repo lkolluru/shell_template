@@ -11,7 +11,7 @@ Workflow responsible for creation and execution of onboarding model aggregations
 * **Usage Details**: Execute the procedue in the event of any manual exeuciton to reset the logging and being the workflow to execute from the begining.
 ```sql
 EXEC appinfo.dbp_clenuplogginginfo @variablefunctionalgroupcode = N'onb' -- nvarchar(100)
-  ```
+```
 ### Workflow Execution sneak peek:
 * **Usage Details**: Execute the view to determine current run state of the application.
 ```sql
